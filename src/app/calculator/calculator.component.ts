@@ -4,7 +4,7 @@ import { AppState } from '../app.service';
 
 @Component({
   selector: 'calculator-gui',
-  styleUrls: ['./calculator.style.css'],
+  styleUrls: ['./calculator.style.scss'],
   templateUrl: './calculator.template.html'
 })
 class Calculator {

@@ -1,5 +1,6 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
+import './main.scss';
 import { AppModule } from './app';
 
 function main(): Promise<any> {

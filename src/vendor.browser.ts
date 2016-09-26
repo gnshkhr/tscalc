@@ -5,5 +5,8 @@ import '@angular/compiler';
 import '@angular/platform-browser';
 import '@angular/platform-browser-dynamic';
 
+// normalize.css
+import 'normalize.css';
+
 // rxjs
 import 'rxjs';

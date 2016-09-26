@@ -1,6 +1,5 @@
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { MdButtonModule } from '@angular2-material/button';
 
 import { AppComponent } from './app.component';
 import { Calculator } from './calculator';
@@ -12,7 +11,7 @@ const APP_PROVIDERS = [
 ];
 
 @NgModule({
-  imports: [BrowserModule, MdButtonModule.forRoot()],
+  imports: [BrowserModule],
   declarations: [AppComponent, Calculator],
   bootstrap: [AppComponent],
   providers: [APP_PROVIDERS]

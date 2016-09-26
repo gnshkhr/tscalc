@@ -14,6 +14,7 @@
         "lib": ["dom", "es6"],
         "types": [
           "node",
+          "jasmine",
           "source-map",
           "webpack"
         ]
@@ -22,8 +23,7 @@
       "src/**/*.ts"
     ],
     "exclude": [
-      "node_modules",
-      "src/**/*.spec.ts"
+      "node_modules"
     ],
     "compileOnSave": false,
     "buildOnSave": false,

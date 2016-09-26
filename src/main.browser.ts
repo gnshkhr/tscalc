@@ -2,6 +2,10 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app';
 
-const platform = platformBrowserDynamic();
+function main(): Promise<any> {
+  return platformBrowserDynamic()
+    .bootstrapModule(AppModule)
+    .catch(e => console.error(e));
+}
 
-platform.bootstrapModule(AppModule);
+document.addEventListener('DOMContentLoaded', main);

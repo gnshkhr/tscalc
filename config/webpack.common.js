@@ -28,16 +28,16 @@ module.exports = function(options) {
     },
 
     module: {
-      preLoaders: [
-        {
-          test: /\.js$/,
-          loader: 'source-map-loader',
-          exclude: [
-            path.join(helpers.modulesDir, 'rxjs'),
-            path.join(helpers.modulesDir, '@angular')
-          ]
-        }
-      ],
+      // preLoaders: [
+        // {
+          // test: /\.js$/,
+          // loader: 'source-map-loader',
+          // exclude: [
+            // path.join(helpers.modulesDir, 'rxjs'),
+            // path.join(helpers.modulesDir, '@angular')
+          // ]
+        // }
+      // ],
 
       loaders: [
         {
@@ -55,7 +55,7 @@ module.exports = function(options) {
         {
           test: /\.html$/,
           loader: 'raw-loader',
-          exclude: [helpers.sourceDir, 'index.html']
+          exclude: [path.join(helpers.sourceDir, 'index.html')]
         },
         {
           test: /\.css$/,

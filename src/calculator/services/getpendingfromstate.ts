@@ -11,6 +11,8 @@ const getPendingFromState = (): GetPendingFromState => {
   const displayForPendingOperation = (pending: PendingOperation): string => {
     const defaultDisplay = '';
 
+    if (!pending) return defaultDisplay;
+
     const [operation, num] = pending;
 
     if (!operation || !num) return defaultDisplay;

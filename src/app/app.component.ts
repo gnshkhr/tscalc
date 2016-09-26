@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 
+import { AppState } from './app.service';
+
 @Component({
-  selector: 'calculator-app',
-  template: '<h1>Calculator App</h1><button md-raised-button color="primary">button</button>'
+  selector: 'ng2-app',
+  template: '<calculator-gui></calculator-gui>'
 })
 class AppComponent {}
 

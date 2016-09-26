@@ -28,7 +28,16 @@ module.exports = function(options) {
     },
 
     module: {
-      // preLoaders: [],
+      preLoaders: [
+        {
+          test: /\.js$/,
+          loader: 'source-map-loader',
+          exclude: [
+            path.join(helpers.modulesDir, 'rxjs'),
+            path.join(helpers.modulesDir, '@angular')
+          ]
+        }
+      ],
 
       loaders: [
         {

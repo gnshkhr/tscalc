@@ -14,16 +14,16 @@ module.exports = function initWebpackTest(options) {
     },
 
     module: {
-      preLoaders: [
-        {
-          test: /\.js$/,
-          loader: 'source-map-loader',
-          exclude: [
-            path.join(helpers.modulesDir, 'rxjs'),
-            path.join(helpers.modulesDir, '@angular')
-          ]
-        }
-      ],
+      // preLoaders: [
+        // {
+          // test: /\.js$/,
+          // loader: 'source-map-loader',
+          // exclude: [
+            // path.join(helpers.modulesDir, 'rxjs'),
+            // path.join(helpers.modulesDir, '@angular')
+          // ]
+        // }
+      // ],
 
       loaders: [
         {

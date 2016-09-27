@@ -1,6 +1,6 @@
 import { curry } from 'ramda';
 
-import { accumulateNonZeroHelper } from '../helpers';
+import helpers from '../helpers';
 import accumulator from '../accumulator';
 
 const handleComputedState =
@@ -24,7 +24,7 @@ const handleComputedState =
     case '7':
     case '8':
     case '9': {
-      const nextState = accumulateNonZeroHelper(services, input, emptyAccumulatorState);
+      const nextState = helpers.accumulateNonZero(services, input, emptyAccumulatorState);
       return nextState;
     }
 

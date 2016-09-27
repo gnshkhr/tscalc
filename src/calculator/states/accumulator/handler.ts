@@ -1,10 +1,6 @@
 import { curry } from 'ramda';
 
-import {
-  accumulateZeroHelper,
-  accumulateNonZeroHelper,
-  getComputedStateHelper
-} from '../helpers';
+import helpers from '../helpers';
 
 const handleAccumulatorState =
   (
@@ -14,7 +10,7 @@ const handleAccumulatorState =
   ): CalculatorState => {
   switch (input) {
     case '0': {
-      const nextState = accumulateZeroHelper(services, state);
+      const nextState = helpers.accumulateZero(services, state);
       return nextState;
     }
 
@@ -27,13 +23,13 @@ const handleAccumulatorState =
     case '7':
     case '8':
     case '9': {
-      const nextState = accumulateNonZeroHelper(services, input, state);
+      const nextState = helpers.accumulateNonZero(services, input, state);
       return nextState;
     }
 
     case 'add': {
       const nextOperation: Add = 'add';
-      const nextState = getComputedStateHelper(services, state, nextOperation);
+      const nextState = helpers.getComputedState(services, state, nextOperation);
 
       return nextState;
     }
@@ -44,7 +40,7 @@ const handleAccumulatorState =
 
     case 'equals': {
       const nextOperation = undefined;
-      const nextState = getComputedStateHelper(services, state, nextOperation);
+      const nextState = helpers.getComputedState(services, state, nextOperation);
       return nextState;
     }
 

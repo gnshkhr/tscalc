@@ -1,6 +1,6 @@
 import { curry } from 'ramda';
 
-import { accumulateNonZeroHelper, getComputedStateHelper } from '../helpers';
+import helpers from '../helpers';
 import accumulator from '../accumulator';
 import zeroFactory from './factory';
 
@@ -27,37 +27,37 @@ const handleZeroState =
     case '7':
     case '8':
     case '9': {
-      const next = accumulateNonZeroHelper(services, input, accumulatorState);
+      const next = helpers.accumulateNonZero(services, input, accumulatorState);
       return next;
     }
 
     case 'add': {
       const nextOperation = input;
-      const nextState = getComputedStateHelper(services, accumulatorState, nextOperation);
+      const nextState = helpers.getComputedState(services, accumulatorState, nextOperation);
       return nextState;
     }
 
     case 'subtract': {
       const nextOperation = input;
-      const nextState = getComputedStateHelper(services, accumulatorState, nextOperation);
+      const nextState = helpers.getComputedState(services, accumulatorState, nextOperation);
       return nextState;
     }
 
     case 'multiply': {
       const nextOperation = input;
-      const nextState = getComputedStateHelper(services, accumulatorState, nextOperation);
+      const nextState = helpers.getComputedState(services, accumulatorState, nextOperation);
       return nextState;
     }
 
     case 'divide': {
       const nextOperation = input;
-      const nextState = getComputedStateHelper(services, accumulatorState, nextOperation);
+      const nextState = helpers.getComputedState(services, accumulatorState, nextOperation);
       return nextState;
     }
 
     case 'equals': {
       const nextOperation = undefined;
-      const nextState = getComputedStateHelper(services, accumulatorState, nextOperation);
+      const nextState = helpers.getComputedState(services, accumulatorState, nextOperation);
       return nextState;
     }
 

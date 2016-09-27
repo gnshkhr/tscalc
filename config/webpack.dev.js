@@ -39,6 +39,7 @@ module.exports = function(options) {
     },
 
     devServer: {
+      contentBase: helpers.outputDir,
       host: helpers.host,
       port: helpers.port,
       historyApiFallback: true,

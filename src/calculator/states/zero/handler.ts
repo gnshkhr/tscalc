@@ -62,7 +62,7 @@ const handleZeroState =
     }
 
     case 'clear': {
-      const nextState = zeroFactory(undefined);
+      const nextState: ZeroState = zeroFactory(undefined);
       return nextState;
     }
   }

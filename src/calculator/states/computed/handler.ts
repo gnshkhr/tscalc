@@ -2,6 +2,7 @@ import { curry } from 'ramda';
 
 import helpers from '../helpers';
 import accumulator from '../accumulator';
+import zero from '../zero';
 
 const handleComputedState =
   (
@@ -34,7 +35,10 @@ const handleComputedState =
     case 'divide': {}
 
     case 'equals': {}
-    case 'clear': {}
+    case 'clear': {
+      const nextState: ZeroState = zero.factory(undefined);
+      return nextState;
+    }
   }
 };
 

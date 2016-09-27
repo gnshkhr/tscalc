@@ -1,6 +1,7 @@
 import { curry } from 'ramda';
 
 import helpers from '../helpers';
+import zero from '../zero';
 
 const handleAccumulatorState =
   (
@@ -44,7 +45,10 @@ const handleAccumulatorState =
       return nextState;
     }
 
-    case 'clear': {}
+    case 'clear': {
+      const nextState: ZeroState = zero.factory(undefined);
+      return nextState;
+    }
   }
 };
 

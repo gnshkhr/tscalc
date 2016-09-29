@@ -1,10 +1,11 @@
-const factory = (pendingOperation: PendingOperation): ZeroState => {
-  const state: ZeroState = {
-    kind: 'zeroState',
-    pendingOperation
-  };
+const factory: ZeroStateFactory =
+  (pendingOperation: Maybe<PendingOperation>): ZeroState => {
+    const state: ZeroState = {
+      kind: 'zeroState',
+      pendingOperation
+    };
 
-  return state;
+    return state;
 };
 
 export default factory;

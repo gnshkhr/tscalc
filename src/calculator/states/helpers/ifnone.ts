@@ -1,5 +1,10 @@
+import { curry } from 'ramda';
+
+// TODO typing?
 const ifNone = (defaultVal, input) => {
   return !input ? defaultVal : input;
 };
 
-export default ifNone;
+const helper = curry(ifNone);
+
+export default helper;

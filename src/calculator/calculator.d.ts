@@ -43,31 +43,50 @@ type OperationResult = number;
 type ZeroStateKind = "zeroState";
 type AccumulatorStateKind = "accumulatorState";
 type ComputedStateKind = "computedState";
+type ErrorStateKind = "errorState";
 
 type DigitAccumulator = string;
 type ComputedDisplay = number;
 
 interface ZeroState {
   readonly kind: ZeroStateKind;
-  readonly pendingOperation?: PendingOperation;
+  readonly pendingOperation: Maybe<PendingOperation>;
 }
 
 interface AccumulatorState {
   readonly kind: AccumulatorStateKind;
   readonly digits: DigitAccumulator;
-  readonly pendingOperation?: PendingOperation;
+  readonly pendingOperation: Maybe<PendingOperation>;
 }
 
 interface ComputedState {
   readonly kind: ComputedStateKind;
   readonly display: ComputedDisplay;
-  readonly pendingOperation?: PendingOperation;
+  readonly pendingOperation: Maybe<PendingOperation>;
 }
 
 type CalculatorState
   = ZeroState
   | AccumulatorState
   | ComputedState;
+
+interface ComputedStateFactory {
+  (
+    pendingOperation: Maybe<PendingOperation>,
+    display: number
+  ): ComputedState;
+}
+
+interface AccumulatorStateFactory {
+  (
+    pendingOperation: Maybe<PendingOperation>,
+    digits: DigitAccumulator
+  ): AccumulatorState
+}
+
+interface ZeroStateFactory {
+  (pendingOperation: Maybe<PendingOperation>): ZeroState
+}
 /* Stop Calculator States */
 
 /* Start Calculator Services */

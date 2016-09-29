@@ -48,6 +48,15 @@ module.exports = function initWebpackTest(options) {
           loaders: ['to-string-loader', 'css-loader', 'postcss-loader']
         },
         {
+          test: /\.scss$/,
+          loaders: [
+            'to-string-loader',
+            'css-loader',
+            'postcss-loader',
+            'sass-loader'
+          ]
+        },
+        {
           test: /\.html$/,
           loader: 'raw-loader',
           exclude: [path.join(helpers.sourceDir, 'index.html')]

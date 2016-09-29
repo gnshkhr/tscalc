@@ -1,26 +1,18 @@
-import ifNone from './ifnone';
-import accumulatorState from '../accumulator';
-import computedState from '../computed';
+import { curry } from 'ramda';
+
+import { Maybe } from '../../../monads';
 
 const getComputedStateHelper =
   (
-    services,
+    ifNoneFunc,
+    compFactory: ComputedStateFactory,
+    services: CalculatorServices,
     state: AccumulatorState,
     nextOperation: Operation
   ): ComputedState => {
-  const currentNum: number = services.getNumberFromAccumulator(state);
-
-  const computeNoPending =
-    computedState.factory([nextOperation, currentNum], currentNum);
-
-  if (!state.pendingOperation) return ifNone(computeNoPending, undefined);
-
-  const [operation, previousNumber] = state.pendingOperation;
-
-  const result = services.performOperation(operation, previousNumber, currentNum);
-
-  const nextState = computedState.factory([nextOperation, result], result);
-  return nextState;
+  return compFactory(Maybe.of(null), 0);
 };
 
-export default getComputedStateHelper;
+const helper = curry(getComputedStateHelper);
+
+export default helper;

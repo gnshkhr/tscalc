@@ -8,16 +8,13 @@ const getPendingFromState = (): GetPendingFromState => {
     }
   };
 
-  const displayForPendingOperation = (pending: PendingOperation): string => {
-    const defaultDisplay = '';
-
-    if (!pending) return defaultDisplay;
-
-    const [operation, num] = pending;
-
-    if (!operation || !num) return defaultDisplay;
-
-    return `${num} ${operationToString(operation)}`;
+  const displayForPendingOperation =
+    (
+      pending: Maybe<PendingOperation>
+    ): string => {
+      return pending.isNothing() ?
+        '' :
+        `${pending.some[1]} ${operationToString(pending.some()[0])}`;
   };
 
   return (state: CalculatorState): string => {

@@ -1,19 +1,22 @@
-import accumulatorState from '../accumulator';
+import { curry } from 'ramda';
 
 const accumulateZeroHelper =
   (
+    accumulatorFactory,
     services: CalculatorServices,
     state: AccumulatorState
   ): AccumulatorState => {
   const digits: DigitAccumulator = state.digits.slice();
-  const pending: PendingOperation = state.pendingOperation;
+  const pending: Maybe<PendingOperation> = state.pendingOperation;
 
   const nextDigits: DigitAccumulator = services.accumulateZero(digits);
 
   const nextState: AccumulatorState =
-    accumulatorState.factory(pending, nextDigits);
+    accumulatorFactory(pending, nextDigits);
 
   return nextState;
 };
 
-export default accumulateZeroHelper;
+const helper = curry(accumulateZeroHelper);
+
+export default helper;

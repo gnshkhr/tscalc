@@ -1,4 +1,8 @@
-const factory = (pendingOperation, digits): AccumulatorState => {
+const factory: AccumulatorStateFactory =
+  (
+    pendingOperation: Maybe<PendingOperation>,
+    digits: DigitAccumulator
+  ): AccumulatorState => {
   const state: AccumulatorState = {
     kind: 'accumulatorState',
     pendingOperation,

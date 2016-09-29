@@ -1,17 +1,21 @@
-import computedState from '../computed';
+import { curry } from 'ramda';
 
 const replacePendingHelper =
   (
+    compFactory,
     state: ComputedState,
     nextOperation: Operation
   ): ComputedState => {
-  const [currentOp, currentNum] = state.pendingOperation;
+  // const [currentOp, currentNum] = state.pendingOperation;
 
-  const nextPending: PendingOperation = [nextOperation, currentNum];
+  // const nextPending: PendingOperation = [nextOperation, currentNum];
 
-  const nextState = computedState.factory(nextPending, state.display);
+  // const nextState = compFactory(nextPending, state.display);
 
-  return nextState;
+  // return nextState;
+  return state;
 };
 
-export default replacePendingHelper;
+const helper = curry(replacePendingHelper);
+
+export default helper;

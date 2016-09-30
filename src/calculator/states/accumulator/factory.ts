@@ -1,6 +1,6 @@
 const factory: AccumulatorStateFactory =
   (
-    pendingOperation: Maybe<PendingOperation>,
+    pendingOperation: IMaybe<PendingOperation>,
     digits: DigitAccumulator
   ): AccumulatorState => {
   const state: AccumulatorState = {

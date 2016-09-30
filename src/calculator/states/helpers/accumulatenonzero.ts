@@ -7,7 +7,7 @@ const accumulateNonZeroHelper =
     digit: NonZeroDigit,
     state: AccumulatorState
   ): AccumulatorState => {
-    const currentPending: Maybe<PendingOperation> = state.pendingOperation;
+    const currentPending: IMaybe<PendingOperation> = state.pendingOperation;
     const currentDigits: DigitAccumulator = state.digits.slice();
 
     const nextDigits: DigitAccumulator =

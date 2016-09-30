@@ -1,5 +1,5 @@
 const factory: ZeroStateFactory =
-  (pendingOperation: Maybe<PendingOperation>): ZeroState => {
+  (pendingOperation: IMaybe<PendingOperation>): ZeroState => {
     const state: ZeroState = {
       kind: 'zeroState',
       pendingOperation

@@ -1,19 +1,26 @@
-import { curry } from 'ramda';
+import { curry, compose } from 'ramda';
+
+import { Maybe } from '../../../generic';
 
 const replacePendingHelper =
   (
-    compFactory,
+    compFactory: ComputedStateFactory,
     state: ComputedState,
     nextOperation: Operation
   ): ComputedState => {
-  // const [currentOp, currentNum] = state.pendingOperation;
+    const swap = (val) => {
+      const [existing, displayNumber] = val;
+      const next = nextOperation;
+      return Maybe.of([next, displayNumber]);
+    };
 
-  // const nextPending: PendingOperation = [nextOperation, currentNum];
+    const nextPending = state.pendingOperation.bind(swap);
 
-  // const nextState = compFactory(nextPending, state.display);
+    const nextState = Object.assign({}, state, {
+      pendingOperation: nextPending
+    });
 
-  // return nextState;
-  return state;
+    return nextState;
 };
 
 const helper = curry(replacePendingHelper);

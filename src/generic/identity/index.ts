@@ -1,2 +1,2 @@
-/* Identity Monad */
+/* Identity */
 export { default } from './identity';

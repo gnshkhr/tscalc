@@ -7,7 +7,7 @@ const accumulateZeroHelper =
     state: AccumulatorState
   ): AccumulatorState => {
   const digits: DigitAccumulator = state.digits.slice();
-  const pending: Maybe<PendingOperation> = state.pendingOperation;
+  const pending: IMaybe<PendingOperation> = state.pendingOperation;
 
   const nextDigits: DigitAccumulator = services.accumulateZero(digits);
 

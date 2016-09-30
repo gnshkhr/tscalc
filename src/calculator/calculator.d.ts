@@ -50,19 +50,19 @@ type ComputedDisplay = number;
 
 interface ZeroState {
   readonly kind: ZeroStateKind;
-  readonly pendingOperation: Maybe<PendingOperation>;
+  readonly pendingOperation: IMaybe<PendingOperation>;
 }
 
 interface AccumulatorState {
   readonly kind: AccumulatorStateKind;
   readonly digits: DigitAccumulator;
-  readonly pendingOperation: Maybe<PendingOperation>;
+  readonly pendingOperation: IMaybe<PendingOperation>;
 }
 
 interface ComputedState {
   readonly kind: ComputedStateKind;
   readonly display: ComputedDisplay;
-  readonly pendingOperation: Maybe<PendingOperation>;
+  readonly pendingOperation: IMaybe<PendingOperation>;
 }
 
 type CalculatorState
@@ -72,20 +72,20 @@ type CalculatorState
 
 interface ComputedStateFactory {
   (
-    pendingOperation: Maybe<PendingOperation>,
+    pendingOperation: IMaybe<PendingOperation>,
     display: number
   ): ComputedState;
 }
 
 interface AccumulatorStateFactory {
   (
-    pendingOperation: Maybe<PendingOperation>,
+    pendingOperation: IMaybe<PendingOperation>,
     digits: DigitAccumulator
   ): AccumulatorState
 }
 
 interface ZeroStateFactory {
-  (pendingOperation: Maybe<PendingOperation>): ZeroState
+  (pendingOperation: IMaybe<PendingOperation>): ZeroState
 }
 /* Stop Calculator States */
 

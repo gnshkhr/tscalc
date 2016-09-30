@@ -1,2 +1,2 @@
-/* Maybe Monad (Just, Nothing) */
+/* Maybe */
 export { default } from './maybe';

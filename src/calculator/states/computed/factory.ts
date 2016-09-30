@@ -1,6 +1,6 @@
 const factory: ComputedStateFactory =
   (
-    pendingOperation: Maybe<PendingOperation>,
+    pendingOperation: IMaybe<PendingOperation>,
     display: number
   ): ComputedState => {
   const state: ComputedState = {

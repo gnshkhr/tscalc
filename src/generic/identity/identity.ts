@@ -1,4 +1,4 @@
-class Identity<T> implements Monad<T> {
+class Identity<T> implements IMonad<T> {
   readonly value: T;
 
   private constructor(val: T) {

@@ -1,4 +1,4 @@
-class Maybe<T> implements Monad<T>, Maybe<T> {
+class Maybe<T> implements IMaybe<T> {
   readonly value: T;
 
   private constructor(val) {
@@ -18,7 +18,7 @@ class Maybe<T> implements Monad<T>, Maybe<T> {
   }
 
   ap<U>(liftedF: Maybe<(value: T) => U>): Maybe<U> {
-    // derived from bind
+     // derived from bind
     return this.isNothing() ? Maybe.of(null) : liftedF.bind(f => this.map(f));
   }
 

@@ -1,5 +1,5 @@
 import utilities from '../../utilities';
-import { Maybe } from '../../../monads';
+import { Maybe } from '../../../generic';
 
 import accumulateNonZero from './accumulatenonzero';
 

@@ -10,7 +10,7 @@ const getPendingFromState = (): GetPendingFromState => {
 
   const displayForPendingOperation =
     (
-      pending: Maybe<PendingOperation>
+      pending: IMaybe<PendingOperation>
     ): string => {
       return pending.isNothing() ?
         '' :

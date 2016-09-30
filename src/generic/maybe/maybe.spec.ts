@@ -128,6 +128,8 @@ describe('Maybe', () => {
   describe('#ap', () => {
     describe('when isNothing === false (Just)', () => {
       it('obeys identity', () => {
+        const testFunc = x => x;
+
         const v = Maybe.of('');
 
         const result = v.ap(Maybe.of(x => x));
@@ -138,19 +140,19 @@ describe('Maybe', () => {
       });
 
       it('obeys homomorphism', () => {
-        const testFunc = x => x ? x + 'k' : x;
+        const testFunc = x => x;
 
-        const result = Maybe.of('o').ap(Maybe.of(testFunc));
-        const expectedResult = Maybe.of(testFunc('o'));
+        const result = Maybe.of('ok').ap(Maybe.of(testFunc));
+        const expectedResult = Maybe.of(testFunc('ok'));
 
         expect(result.value).toEqual('ok');
         expect(result).toEqual(expectedResult);
       });
 
       it('obeys interchange', () => {
-        const testFunc = x => x ? x + 'k' : x;
+        const testFunc = x => x;
 
-        const y = 'o';
+        const y = 'ok';
         const u = Maybe.of(testFunc);
 
         const result = Maybe.of(y).ap(u);
@@ -178,9 +180,11 @@ describe('Maybe', () => {
 
     describe('when isNothing === true (Nothing)', () => {
       it('obeys identity', () => {
+        const testFunc = x => x;
+
         const v = Maybe.of(null);
 
-        const result = v.ap(Maybe.of(x => x));
+        const result = v.ap(Maybe.of(testFunc));
         const expectedResult = Maybe.of(null);
 
         expect(result.value).toEqual(null);
@@ -188,7 +192,7 @@ describe('Maybe', () => {
       });
 
       it('obeys homomorphism', () => {
-        const testFunc = x => x ? x + 'k' : x;
+        const testFunc = x => x;
 
         const result = Maybe.of(null).ap(Maybe.of(testFunc));
         const expectedResult = Maybe.of((testFunc(null)));
@@ -198,7 +202,7 @@ describe('Maybe', () => {
       });
 
       it('obeys interchange', () => {
-        const testFunc = x => x ? x + 'k' : x;
+        const testFunc = x => x;
 
         const y = null;
         const u = Maybe.of(testFunc);

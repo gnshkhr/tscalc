@@ -35,7 +35,8 @@
     "test:watch": {
       "command": "karma start --auto-watch --no-single-run",
       "env": {
-        "NODE_ENV": "test"
+        "NODE_ENV": "test",
+        "NO_PASS": "enabled"
       }
     }
   },

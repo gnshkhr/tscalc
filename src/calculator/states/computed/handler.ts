@@ -1,20 +1,24 @@
 import { curry } from 'ramda';
 
+import { Maybe } from '../../../generic';
 import helpers from '../helpers';
 import accumulator from '../accumulator';
 import zero from '../zero';
 
 const handleComputedState =
   (
-    services,
-    state,
-    input
+    services: CalculatorServices,
+    state: ComputedState,
+    input: Zero | NonZeroDigit | Operation | Equals | Clear
   ): CalculatorState => {
   const currentPending = state.pendingOperation;
-  const emptyAccumulatorState: AccumulatorState = accumulator.factory(currentPending, '');
+  const emptyAcc: AccumulatorState = accumulator.factory(currentPending, '');
 
   switch (input) {
-    case '0': {}
+    case '0': {
+      const nextState: ZeroState = zero.factory(currentPending);
+      return nextState;
+    }
 
     case '1':
     case '2':
@@ -25,18 +29,47 @@ const handleComputedState =
     case '7':
     case '8':
     case '9': {
-      const nextState = helpers.accumulateNonZero(services, input, emptyAccumulatorState);
+      const nextState = helpers.accumulateNonZero(services, input, emptyAcc);
       return nextState;
     }
 
-    case 'add': {}
-    case 'subtract': {}
-    case 'multiply': {}
-    case 'divide': {}
+    case 'add': {
+      // const nextOperation = Maybe.of('add');
+      const nextOperation: Operation = 'add';
+      const nextState = helpers.replacePending(state, nextOperation);
+      return nextState;
+    }
 
-    case 'equals': {}
+    case 'subtract': {
+      // const nextOperation = Maybe.of('subtract');
+      const nextOperation: Operation = 'subtract';
+      const nextState = helpers.replacePending(state, nextOperation);
+      return nextState;
+    }
+
+    case 'multiply': {
+      // const nextOperation = Maybe.of('multiply');
+      const nextOperation: Operation = 'multiply';
+      const nextState = helpers.replacePending(state, nextOperation);
+      return nextState;
+    }
+
+    case 'divide': {
+      // const nextOperation = Maybe.of('divide');
+      const nextOperation: Operation = 'divide';
+      const nextState = helpers.replacePending(state, nextOperation);
+      return nextState;
+    }
+
+    case 'equals': {
+      // const nextOperation = Maybe.of(null);
+      const nextOperation = null;
+      const nextState = helpers.replacePending(state, nextOperation);
+      return nextState;
+    }
+
     case 'clear': {
-      const nextState: ZeroState = zero.factory(undefined);
+      const nextState: ZeroState = zero.factory(Maybe.of(null));
       return nextState;
     }
   }

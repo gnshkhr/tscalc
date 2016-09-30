@@ -2,7 +2,7 @@ import { curry } from 'ramda';
 
 const accumulateZeroHelper =
   (
-    accumulatorFactory,
+    accumulatorFactory: AccumulatorStateFactory,
     services: CalculatorServices,
     state: AccumulatorState
   ): AccumulatorState => {

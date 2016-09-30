@@ -52,5 +52,11 @@ module.exports = function initKarma(config) {
     singleRun: true
   };
 
+  const noPass = {
+    suppressPassed: true
+  };
+
+  if (process.env.NO_PASS === 'enabled') configuration.specReporter = noPass;
+
   config.set(configuration);
 };

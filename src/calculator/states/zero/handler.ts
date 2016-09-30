@@ -1,12 +1,13 @@
 import { curry } from 'ramda';
 
+import { Maybe } from '../../../generic';
 import helpers from '../helpers';
 import accumulator from '../accumulator';
 import zeroFactory from './factory';
 
 const handleZeroState =
   (
-    services,
+    services: CalculatorServices,
     state: ZeroState,
     input
   ): CalculatorState => {
@@ -15,7 +16,7 @@ const handleZeroState =
 
   switch (input) {
     case '0': {
-      return zeroFactory(state.pendingOperation);
+      return zeroFactory(currentPending);
     }
 
     case '1':
@@ -31,6 +32,7 @@ const handleZeroState =
       return next;
     }
 
+    // Operations to ComputedState or ErrorState
     case 'add': {
       const nextOperation = input;
       const nextState = helpers.getComputedState(services, accumulatorState, nextOperation);
@@ -55,14 +57,16 @@ const handleZeroState =
       return nextState;
     }
 
+    // Equals
     case 'equals': {
       const nextOperation = undefined;
       const nextState = helpers.getComputedState(services, accumulatorState, nextOperation);
       return nextState;
     }
 
+    // Clear
     case 'clear': {
-      const nextState: ZeroState = zeroFactory(undefined);
+      const nextState: ZeroState = zeroFactory(Maybe.of(null));
       return nextState;
     }
   }

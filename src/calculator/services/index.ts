@@ -11,7 +11,7 @@ import appendToAccumulator from './helpers/appendtoaccumulator';
 
 export default {
   accumulateNonZero: accumulateNonZero(appendToAccumulator),
-  accumulateZero,
+  accumulateZero: accumulateZero(appendToAccumulator),
   performOperation,
   getNumberFromAccumulator,
   getDisplayFromState,

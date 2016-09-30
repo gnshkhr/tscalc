@@ -11,7 +11,7 @@ import zeroFactory from '../zero/factory';
 
 export default {
   accumulateNonZero: accumulateNonZero(accumulatorFactory),
-  accumulateZero: accumulateZero(zeroFactory),
+  accumulateZero: accumulateZero(accumulatorFactory),
   getComputedState: getComputedState(ifNone, computedFactory),
   ifNone,
   replacePending: replacePending(computedFactory),

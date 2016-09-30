@@ -1,3 +1,4 @@
+import { Maybe } from '../../../generic';
 import { curry } from 'ramda';
 
 import helpers from '../helpers';
@@ -6,7 +7,7 @@ import zero from '../zero';
 const handleAccumulatorState =
   (
     services,
-    state,
+    state: AccumulatorState,
     input: Input
   ): CalculatorState => {
   switch (input) {
@@ -46,7 +47,7 @@ const handleAccumulatorState =
     }
 
     case 'clear': {
-      const nextState: ZeroState = zero.factory(undefined);
+      const nextState: ZeroState = zero.factory(Maybe.of(null));
       return nextState;
     }
   }

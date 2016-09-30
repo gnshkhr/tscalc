@@ -1,9 +1,7 @@
-import { appendToAccumulator } from './helpers';
-
-const accumulateZero = (): AccumulateZero => {
+const accumulateZero = (appendFunc): AccumulateZero => {
   return (accumulator: DigitAccumulator): DigitAccumulator => {
     const charToAppend: Zero = "0";
-    const next: DigitAccumulator = appendToAccumulator(accumulator, charToAppend);
+    const next: DigitAccumulator = appendFunc(accumulator, charToAppend);
     return next;
   };
 };

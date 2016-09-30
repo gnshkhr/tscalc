@@ -5,13 +5,15 @@ import getNumberFromAccumulator from './getnumberfromaccumulator';
 import getDisplayFromState from './getdisplayfromstate';
 import getPendingFromState from './getpendingfromstate';
 
+import appendToAccumulator from './helpers/appendtoaccumulator';
+
 const createServices = (): CalculatorServices => {
   return {
-    accumulateNonZero: accumulateNonZero(),
-    accumulateZero: accumulateZero(),
+    accumulateNonZero: accumulateNonZero(appendToAccumulator),
+    accumulateZero: accumulateZero(appendToAccumulator),
     performOperation: performOperation(),
     getNumberFromAccumulator: getNumberFromAccumulator(),
-    getDisplayFromState: getDisplayFromState(),
+    getDisplayFromState: getDisplayFromState(getNumberFromAccumulator()),
     getPendingFromState: getPendingFromState(),
   };
 };

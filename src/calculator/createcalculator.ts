@@ -1,6 +1,6 @@
 import states from './states';
 
-const createCalculator = (services): Calculator => {
+const createCalculator = (services: CalculatorServices): Calculator => {
   const zero = states.zero.handler(services);
   const accumulator = states.accumulator.handler(services);
   const computed = states.computed.handler(services);

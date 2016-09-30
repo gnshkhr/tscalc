@@ -1,7 +1,4 @@
-import getNumberFromAccumulator from './getnumberfromaccumulator';
-
-// TODO explicit dependency via parameter
-const getDisplayFromState = (): GetDisplayFromState => {
+const getDisplayFromState = (getNumFromAccService): GetDisplayFromState => {
   const numberToString = num => '' + num;
 
   return (state: CalculatorState): string => {
@@ -11,7 +8,7 @@ const getDisplayFromState = (): GetDisplayFromState => {
       }
 
       case 'accumulatorState': {
-        const num = getNumberFromAccumulator()(state);
+        const num = getNumFromAccService()(state);
         const text = numberToString(num);
         return text;
       }

@@ -14,11 +14,11 @@ const getPendingFromState = (): GetPendingFromState => {
     ): string => {
       return pending.isNothing() ?
         '' :
-        `${pending.some[1]} ${operationToString(pending.some()[0])}`;
+        `${pending.some()[1]} ${operationToString(pending.some()[0])}`;
   };
 
   return (state: CalculatorState): string => {
-    // TODO fall through or get rid of switch
+    // TODO fall through or get rid of switch ?
     switch (state.kind) {
       case 'zeroState': {
         return displayForPendingOperation(state.pendingOperation);

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import calculator from '../calculator';
+import { Maybe } from '../generic';
 
 const { states, services, createCalculator } = calculator;
 
@@ -8,7 +9,7 @@ export interface State {
   calculatorState: CalculatorState;
 }
 
-const zero: ZeroState = states.zero.factory(undefined);
+const zero: ZeroState = states.zero.factory(Maybe.of(null));
 
 const initialState = {
   calculatorState: zero
@@ -31,7 +32,9 @@ class AppState {
   }
 
   getDisplayNumber(): string {
-    const num = services.getDisplayFromState()(this._state.calculatorState);
+    const num = services.getDisplayFromState(
+      services.getNumberFromAccumulator
+    )(this._state.calculatorState);
 
     return num;
   }

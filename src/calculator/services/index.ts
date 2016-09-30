@@ -7,8 +7,10 @@ import getDisplayFromState from './getdisplayfromstate';
 import getPendingFromState from './getpendingfromstate';
 import createServices from './createservices';
 
+import appendToAccumulator from './helpers/appendtoaccumulator';
+
 export default {
-  accumulateNonZero,
+  accumulateNonZero: accumulateNonZero(appendToAccumulator),
   accumulateZero,
   performOperation,
   getNumberFromAccumulator,

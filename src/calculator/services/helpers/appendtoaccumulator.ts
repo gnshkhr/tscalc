@@ -5,6 +5,4 @@ const appendToAccumulator =
       return next;
     };
 
-export {
-  appendToAccumulator
-};
+export default appendToAccumulator;

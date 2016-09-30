@@ -8,10 +8,10 @@ const replacePendingHelper =
     state: ComputedState,
     nextOperation: Operation
   ): ComputedState => {
-    const swap = (val) => {
+    const swap = (val: PendingOperation): Maybe<PendingOperation> => {
       const [existing, displayNumber] = val;
       const next = nextOperation;
-      return Maybe.of([next, displayNumber]);
+      return Maybe.of<PendingOperation>([next, displayNumber]);
     };
 
     const nextPending = state.pendingOperation.bind(swap);

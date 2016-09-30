@@ -22,7 +22,6 @@ describe('#accumulateZero state handler helper', () => {
         pendingOperation: Maybe.of(null)
       };
 
-
       const expectedResult = `${testState.digits}${0}`;
       const result = accumulateZero(accFactory, fakeServices, testState);
 

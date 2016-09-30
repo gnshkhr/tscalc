@@ -13,8 +13,18 @@ const fakeServices = {
     return next;
   },
 
-  performOperation: (): OperationResult => {
-    return 5;
+  performOperation: (op, x, y): OperationResult => {
+    const handleAdd = (x: number, y: number): number => x + y;
+    const handleSubtract = (x: number, y: number): number => x - y;
+    const handleMultiply = (x: number, y: number): number => x * y;
+    const handleDivide = (x: number, y: number): number => x / y;
+
+    switch (op) {
+      case 'add': { return handleAdd(x, y); }
+      case 'subtract': { return handleSubtract(x, y); }
+      case 'multiply': { return handleMultiply(x, y); }
+      case 'divide': { return handleDivide(x, y); }
+    }
   },
 
   getNumberFromAccumulator: () => {

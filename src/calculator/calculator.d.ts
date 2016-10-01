@@ -35,8 +35,6 @@ type Operation
   | Divide;
 
 type PendingOperation = [Operation, number];
-
-type OperationResult = number;
 /* Stop Operations */
 
 /* Start Calculator States */
@@ -45,8 +43,15 @@ type AccumulatorStateKind = "accumulatorState";
 type ComputedStateKind = "computedState";
 type ErrorStateKind = "errorState";
 
+type DivideByZero = "Cannot divide by zero";
+
 type DigitAccumulator = string;
 type ComputedDisplay = number;
+type OperationError = DivideByZero;
+
+type OperationResult
+  = IRight<number>
+  | ILeft<OperationError>;
 
 interface ZeroState {
   readonly kind: ZeroStateKind;
@@ -63,6 +68,11 @@ interface ComputedState {
   readonly kind: ComputedStateKind;
   readonly display: ComputedDisplay;
   readonly pendingOperation: IMaybe<PendingOperation>;
+}
+
+interface ErrorState {
+  readonly kind: ErrorStateKind;
+  readonly error: OperationError;
 }
 
 type CalculatorState

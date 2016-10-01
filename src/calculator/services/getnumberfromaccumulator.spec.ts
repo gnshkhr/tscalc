@@ -14,4 +14,17 @@ describe('GetNumberFromAccumulator CalculatorService', () => {
 
     expect(result).toEqual(expectedResult);
   });
+
+  it('returns zero if accumulator is empty', () => {
+    const testState: AccumulatorState = {
+      kind: 'accumulatorState',
+      pendingOperation: Maybe.of(null),
+      digits: ''
+    };
+
+    const result = getNumberFromAccumulator()(testState);
+    const expectedResult = 0;
+
+    expect(result).toEqual(expectedResult);
+  });
 });

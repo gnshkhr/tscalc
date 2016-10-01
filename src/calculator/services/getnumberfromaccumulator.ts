@@ -1,10 +1,8 @@
 const getNumberFromAccumulator = (): GetNumberFromAccumulator => {
   return (state: AccumulatorState): number => {
-    const digits: DigitAccumulator = state.digits.slice();
-
-    const num: number = parseFloat(digits);
-
-    return num;
+    return state.digits.length < 1 ?
+      0 :
+      parseFloat(state.digits.slice());
   };
 };
 

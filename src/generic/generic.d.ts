@@ -18,3 +18,7 @@ interface IMaybe<T> extends IMonad<T> {
   isNothing(): boolean;
   some(): T;
 }
+
+interface ILeft<T> {}
+
+interface IRight<T> {}

@@ -14,7 +14,7 @@ const getPendingFromState = (): GetPendingFromState => {
     ): string => {
       return pending.isNothing() ?
         '' :
-        `${pending.some()[1]} ${operationToString(pending.some()[0])}`;
+        `${pending.some()[1]} ${operationToString(pending.some()[0])}`.trim();
   };
 
   return (state: CalculatorState): string => {

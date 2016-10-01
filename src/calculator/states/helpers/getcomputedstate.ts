@@ -8,12 +8,12 @@ const getComputedStateHelper =
     compFactory: ComputedStateFactory,
     services: CalculatorServices,
     state: AccumulatorState,
-    nextOperation: Operation
+    nextOperation: Maybe<Operation>
   ): ComputedState => {
     const getNextState = (dN: number) => {
-      const nextPending = Maybe.of<PendingOperation>([nextOperation, dN]);
-      const nextState = compFactory(nextPending, dN);
-      return nextState;
+      return nextOperation.isNothing() ?
+        compFactory(Maybe.of(null), dN) :
+        compFactory(Maybe.of<PendingOperation>([nextOperation.some(), dN]), dN);
     };
 
     const currentNum: number = services.getNumberFromAccumulator(state);
@@ -25,7 +25,8 @@ const getComputedStateHelper =
     const [op, prevNum] = state.pendingOperation.some();
     const result = services.performOperation(op, prevNum, currentNum);
 
-    return getNextState(result);
+    // TODO fix when OperationResult properly implemented
+    return getNextState(<number>result);
 };
 
 const helper = curry(getComputedStateHelper);

@@ -6,7 +6,7 @@ import zero from '../zero';
 
 const handleAccumulatorState =
   (
-    services,
+    services: CalculatorServices,
     state: AccumulatorState,
     input: Input
   ): CalculatorState => {
@@ -30,18 +30,36 @@ const handleAccumulatorState =
     }
 
     case 'add': {
-      const nextOperation: Add = 'add';
+      // const nextOperation: Add = 'add';
+      const nextOperation = Maybe.of<Operation>('add');
       const nextState = helpers.getComputedState(services, state, nextOperation);
 
       return nextState;
     }
 
-    case 'subtract': {}
-    case 'multiply': {}
-    case 'divide': {}
+    case 'subtract': {
+      const nextOperation = Maybe.of<Operation>('subtract');
+      const nextState = helpers.getComputedState(services, state, nextOperation);
+
+      return nextState;
+    }
+
+    case 'multiply': {
+      const nextOperation = Maybe.of<Operation>('multiply');
+      const nextState = helpers.getComputedState(services, state, nextOperation);
+
+      return nextState;
+    }
+
+    case 'divide': {
+      const nextOperation = Maybe.of<Operation>('divide');
+      const nextState = helpers.getComputedState(services, state, nextOperation);
+
+      return nextState;
+    }
 
     case 'equals': {
-      const nextOperation = undefined;
+      const nextOperation = Maybe.of(null);
       const nextState = helpers.getComputedState(services, state, nextOperation);
       return nextState;
     }

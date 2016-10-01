@@ -1,7 +1,7 @@
 class Maybe<T> implements IMaybe<T> {
-  readonly value: T;
+  public readonly value: T;
 
-  private constructor(val) {
+  private constructor(val: T) {
     this.value = val;
   }
 

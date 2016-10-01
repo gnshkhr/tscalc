@@ -9,7 +9,7 @@ const handleZeroState =
   (
     services: CalculatorServices,
     state: ZeroState,
-    input
+    input: Input
   ): CalculatorState => {
   const currentPending = state.pendingOperation;
   const accumulatorState = accumulator.factory(currentPending, '');
@@ -32,39 +32,36 @@ const handleZeroState =
       return next;
     }
 
-    // Operations to ComputedState or ErrorState
     case 'add': {
-      const nextOperation = input;
+      const nextOperation = Maybe.of<Operation>('add');
       const nextState = helpers.getComputedState(services, accumulatorState, nextOperation);
       return nextState;
     }
 
     case 'subtract': {
-      const nextOperation = input;
+      const nextOperation = Maybe.of<Operation>('subtract');
       const nextState = helpers.getComputedState(services, accumulatorState, nextOperation);
       return nextState;
     }
 
     case 'multiply': {
-      const nextOperation = input;
+      const nextOperation = Maybe.of<Operation>('multiply');;
       const nextState = helpers.getComputedState(services, accumulatorState, nextOperation);
       return nextState;
     }
 
     case 'divide': {
-      const nextOperation = input;
+      const nextOperation = Maybe.of<Operation>('divide');;
       const nextState = helpers.getComputedState(services, accumulatorState, nextOperation);
       return nextState;
     }
 
-    // Equals
     case 'equals': {
-      const nextOperation = undefined;
+      const nextOperation = Maybe.of(null);
       const nextState = helpers.getComputedState(services, accumulatorState, nextOperation);
       return nextState;
     }
 
-    // Clear
     case 'clear': {
       const nextState: ZeroState = zeroFactory(Maybe.of(null));
       return nextState;

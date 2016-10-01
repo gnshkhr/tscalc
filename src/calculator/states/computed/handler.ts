@@ -34,36 +34,36 @@ const handleComputedState =
     }
 
     case 'add': {
-      // const nextOperation = Maybe.of('add');
-      const nextOperation: Operation = 'add';
+      const nextOperation = Maybe.of<Operation>('add');
+      // const nextOperation: Operation = 'add';
       const nextState = helpers.replacePending(state, nextOperation);
       return nextState;
     }
 
     case 'subtract': {
-      // const nextOperation = Maybe.of('subtract');
-      const nextOperation: Operation = 'subtract';
+      const nextOperation = Maybe.of<Operation>('subtract');
+      // const nextOperation: Operation = 'subtract';
       const nextState = helpers.replacePending(state, nextOperation);
       return nextState;
     }
 
     case 'multiply': {
-      // const nextOperation = Maybe.of('multiply');
-      const nextOperation: Operation = 'multiply';
+      const nextOperation = Maybe.of<Operation>('multiply');
+      // const nextOperation: Operation = 'multiply';
       const nextState = helpers.replacePending(state, nextOperation);
       return nextState;
     }
 
     case 'divide': {
-      // const nextOperation = Maybe.of('divide');
-      const nextOperation: Operation = 'divide';
+      const nextOperation = Maybe.of<Operation>('divide');
+      // const nextOperation: Operation = 'divide';
       const nextState = helpers.replacePending(state, nextOperation);
       return nextState;
     }
 
     case 'equals': {
-      // const nextOperation = Maybe.of(null);
-      const nextOperation = null;
+      const nextOperation = Maybe.of(null);
+      // const nextOperation = null;
       const nextState = helpers.replacePending(state, nextOperation);
       return nextState;
     }

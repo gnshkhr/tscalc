@@ -14,8 +14,8 @@ class Identity<T> implements IMonad<T> {
     return liftedF.bind(f => this.map(f));
   }
 
-  bind<U>(f: (value: T) => Identity<U>): Identity<U> {
-    return f(this.value);
+  bind<U>(monadicF: (value: T) => Identity<U>): Identity<U> {
+    return monadicF(this.value);
   }
 
   map<U>(f: (value: T) => U): Identity<U> {

@@ -26,7 +26,7 @@ describe('#getComputedState state handler helper', () => {
         };
 
         const result = getComputedState(
-          noop, csFactory, fakeServices, testState, 'subtract');
+          noop, csFactory, fakeServices, testState, Maybe.of<Operation>('subtract'));
 
         const expectedResult: ComputedState = {
           kind: 'computedState',
@@ -47,7 +47,7 @@ describe('#getComputedState state handler helper', () => {
         };
 
         const result = getComputedState(
-          noop, csFactory, fakeServices, testState, 'add');
+          noop, csFactory, fakeServices, testState, Maybe.of<Operation>('add'));
 
         const expectedResult: ComputedState = {
           kind: 'computedState',
@@ -68,7 +68,7 @@ describe('#getComputedState state handler helper', () => {
         };
 
         const result = getComputedState(
-          noop, csFactory, fakeServices, testState, 'add');
+          noop, csFactory, fakeServices, testState, Maybe.of<Operation>('add'));
 
         const expectedResult: ComputedState = {
           kind: 'computedState',
@@ -89,7 +89,7 @@ describe('#getComputedState state handler helper', () => {
         };
 
         const result = getComputedState(
-          noop, csFactory, fakeServices, testState, 'add');
+          noop, csFactory, fakeServices, testState, Maybe.of<Operation>('add'));
 
         const expectedResult: ComputedState = {
           kind: 'computedState',
@@ -112,7 +112,7 @@ describe('#getComputedState state handler helper', () => {
         };
 
         const result = getComputedState(
-          noop, csFactory, fakeServices, testState, 'add');
+          noop, csFactory, fakeServices, testState, Maybe.of<Operation>('add'));
 
         const expectedResult: ComputedState = {
           kind: 'computedState',
@@ -133,7 +133,7 @@ describe('#getComputedState state handler helper', () => {
         };
 
         const result = getComputedState(
-          noop, csFactory, fakeServices, testState, 'subtract');
+          noop, csFactory, fakeServices, testState, Maybe.of<Operation>('subtract'));
 
         const expectedResult: ComputedState = {
           kind: 'computedState',
@@ -154,7 +154,7 @@ describe('#getComputedState state handler helper', () => {
         };
 
         const result = getComputedState(
-          noop, csFactory, fakeServices, testState, 'multiply');
+          noop, csFactory, fakeServices, testState, Maybe.of<Operation>('multiply'));
 
         const expectedResult: ComputedState = {
           kind: 'computedState',
@@ -175,7 +175,7 @@ describe('#getComputedState state handler helper', () => {
         };
 
         const result = getComputedState(
-          noop, csFactory, fakeServices, testState, 'divide');
+          noop, csFactory, fakeServices, testState, Maybe.of<Operation>('divide'));
 
         const expectedResult: ComputedState = {
           kind: 'computedState',

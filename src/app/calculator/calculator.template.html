@@ -12,36 +12,64 @@
   </div>
 
   <div>
-    <button md-button (click)="onInput('7')">7</button>
-    <button md-button (click)="onInput('8')">8</button>
-    <button md-button (click)="onInput('9')">9</button>
+    <button (click)="onInput('7')">7</button>
+    <button (click)="onInput('8')">8</button>
+    <button (click)="onInput('9')">9</button>
   </div>
 
   <div>
-    <button md-button (click)="onInput('4')">4</button>
-    <button md-button (click)="onInput('5')">5</button>
-    <button md-button (click)="onInput('6')">6</button>
+    <button (click)="onInput('4')">4</button>
+    <button (click)="onInput('5')">5</button>
+    <button (click)="onInput('6')">6</button>
   </div>
 
   <div>
-    <button md-button (click)="onInput('1')">1</button>
-    <button md-button (click)="onInput('2')">2</button>
-    <button md-button (click)="onInput('3')">3</button>
+    <button (click)="onInput('1')">1</button>
+    <button (click)="onInput('2')">2</button>
+    <button (click)="onInput('3')">3</button>
   </div>
 
   <div>
-    <button md-button (click)="onInput('0')">0</button>
+    <button
+      [disabled]="appState.zeroDisabled$ | async"
+      (click)="onInput('0')"
+    >
+      0
+    </button>
   </div>
 
   <div>
-    <button md-button (click)="onInput('add')">+</button>
-    <button md-button (click)="onInput('subtract')">-</button>
-    <button md-button (click)="onInput('multiply')">*</button>
-    <button md-button (click)="onInput('divide')">/</button>
+    <button
+      [disabled]="appState.operationsDisabled$ | async"
+      (click)="onInput('add')"
+    >
+      +
+    </button>
+
+    <button
+      [disabled]="appState.operationsDisabled$ | async"
+      (click)="onInput('subtract')"
+    >
+      -
+    </button>
+
+    <button
+      [disabled]="appState.operationsDisabled$ | async"
+      (click)="onInput('multiply')"
+    >
+      *
+    </button>
+
+    <button
+      [disabled]="appState.operationsDisabled$ | async"
+      (click)="onInput('divide')"
+    >
+      /
+    </button>
   </div>
 
   <div>
-    <button md-button (click)="onInput('clear')">clear</button>
-    <button md-button (click)="onInput('equals')">equals</button>
+    <button (click)="onInput('clear')">clear</button>
+    <button (click)="onInput('equals')">equals</button>
   </div>
 </div>

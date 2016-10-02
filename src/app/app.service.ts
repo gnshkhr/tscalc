@@ -17,8 +17,8 @@ const getZeroState = (): ZeroState => {
   return zero.factory(Maybe.of(null));
 };
 
-const _input$ = new Rx.Subject(); // inputs from user
-// const _input$ = new Rx.BehaviorSubject('0'); // inputs from user
+// const _input$ = new Rx.Subject(); // inputs from user
+const _input$ = new Rx.BehaviorSubject('0'); // inputs from user
 
 const flipBinary = func => (x, y) => func(y, x);
 const flippedCalculator = flipBinary(calculator); // flip args for scan
@@ -59,19 +59,19 @@ const isClearInput = x => x === 'clear';
 const isEqualsInput = x => x === 'equals';
 
 const or = (a, b) => x => a(x) || b(x);
-const isClearOrEqualsInput = or(isClearInput, isEqualsInput);
+const isClearOrEqualsInput = or(isClearInput, isEqualsInput); // for filter
 
-const inputUpdate$ = _input$
+const inputUpdate$ = _input$ // map clear and equals input updates to actions
   .filter(isClearOrEqualsInput)
   .map(createInputUpdate);
 
-const displayUpdate$ = _display$
+const displayUpdate$ = _display$ // map display updates to actions
   .map(createDisplayUpdate);
 
-const pendingUpdate$ = _pending$
+const pendingUpdate$ = _pending$ // map pending updates to actions
   .map(createPendingUpdate);
 
-const action$ = Rx.Observable
+const action$ = Rx.Observable // merge into action stream
   .merge(stateUpdate$, inputUpdate$, displayUpdate$, pendingUpdate$);
 
 const testInitialState = {
@@ -86,7 +86,6 @@ const testInitialState = {
 const testReducer = (state, action) => {
   switch (action.type) {
     case STATE_UPDATE: {
-
       const nextState = Object.assign({}, state, {
         calculatorState: {
           kind: action.payload.kind,
@@ -139,9 +138,22 @@ const getTestString = state => {
   return `${display}`;
 };
 
-const _test$ = action$
+const _test$ = action$ // more user friendly display for gui
   .scan(testReducer, testInitialState)
   .map(getTestString);
+
+const _operationsDisabled$ = _state$ // if equals was pressed disable +,-,*,/
+  .map(state => {
+    if (state.pendingOperation.isNothing()) return state.kind === 'computedState';
+    return false;
+  });
+
+const _zeroDisabled$ = _state$ // if pending op is division return true
+  .map(state => {
+    return !state.pendingOperation.isNothing() ?
+      state.pendingOperation.some()[0] === 'divide' :
+      false;
+  });
 
 @Injectable()
 class AppState {
@@ -150,6 +162,8 @@ class AppState {
   display$ = _display$;
   pending$ = _pending$;
   test$ = _test$;
+  operationsDisabled$ = _operationsDisabled$;
+  zeroDisabled$ = _zeroDisabled$;
 }
 
 export { AppState };

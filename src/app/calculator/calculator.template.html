@@ -1,43 +1,47 @@
 <div>
   <div>
-    <label>displayNumber: {{localDisplayNumber}}</label>
+    <label>async display: {{appState.display$ | async}}</label>
   </div>
 
   <div>
-    <label>displayPending: {{localDisplayPending}}</label>
+    <label>async pending: {{appState.pending$ | async}}</label>
   </div>
 
   <div>
-    <button md-button (click)="onNumberClick(7)">7</button>
-    <button md-button (click)="onNumberClick(8)">8</button>
-    <button md-button (click)="onNumberClick(9)">9</button>
+    <label>async test: {{appState.test$ | async}}</label>
   </div>
 
   <div>
-    <button md-button (click)="onNumberClick(4)">4</button>
-    <button md-button (click)="onNumberClick(5)">5</button>
-    <button md-button (click)="onNumberClick(6)">6</button>
+    <button md-button (click)="onInput('7')">7</button>
+    <button md-button (click)="onInput('8')">8</button>
+    <button md-button (click)="onInput('9')">9</button>
   </div>
 
   <div>
-    <button md-button (click)="onNumberClick(1)">1</button>
-    <button md-button (click)="onNumberClick(2)">2</button>
-    <button md-button (click)="onNumberClick(3)">3</button>
+    <button md-button (click)="onInput('4')">4</button>
+    <button md-button (click)="onInput('5')">5</button>
+    <button md-button (click)="onInput('6')">6</button>
   </div>
 
   <div>
-    <button md-button (click)="onNumberClick(0)">0</button>
+    <button md-button (click)="onInput('1')">1</button>
+    <button md-button (click)="onInput('2')">2</button>
+    <button md-button (click)="onInput('3')">3</button>
   </div>
 
   <div>
-    <button md-button (click)="onNumberClick('add')">+</button>
-    <button md-button (click)="onNumberClick('subtract')">-</button>
-    <button md-button (click)="onNumberClick('multiply')">*</button>
-    <button md-button (click)="onNumberClick('divide')">/</button>
+    <button md-button (click)="onInput('0')">0</button>
   </div>
 
   <div>
-    <button md-button (click)="onNumberClick('clear')">clear</button>
-    <button md-button (click)="onNumberClick('equals')">equals</button>
+    <button md-button (click)="onInput('add')">+</button>
+    <button md-button (click)="onInput('subtract')">-</button>
+    <button md-button (click)="onInput('multiply')">*</button>
+    <button md-button (click)="onInput('divide')">/</button>
+  </div>
+
+  <div>
+    <button md-button (click)="onInput('clear')">clear</button>
+    <button md-button (click)="onInput('equals')">equals</button>
   </div>
 </div>

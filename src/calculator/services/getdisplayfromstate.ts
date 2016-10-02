@@ -1,4 +1,7 @@
-const getDisplayFromState = (getNumFromAccService): GetDisplayFromState => {
+const getDisplayFromState =
+  (
+    getNumFromAccService: GetNumberFromAccumulator
+  ): GetDisplayFromState => {
   const numberToString = num => '' + num;
 
   return (state: CalculatorState): string => {
@@ -8,7 +11,7 @@ const getDisplayFromState = (getNumFromAccService): GetDisplayFromState => {
       }
 
       case 'accumulatorState': {
-        const num = getNumFromAccService()(state);
+        const num = getNumFromAccService(state);
         const text = numberToString(num);
         return text;
       }

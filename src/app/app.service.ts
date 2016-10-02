@@ -1,59 +1,51 @@
 import { Injectable } from '@angular/core';
+import * as Rx from 'rxjs';
 
-import calculator from '../calculator';
+import CalculatorLib from '../calculator';
 import { Maybe } from '../generic';
 
-const { states, services, createCalculator } = calculator;
+const {
+  createCalculator,
+  states: { zero },
+  services: { createServices }
+} = CalculatorLib;
 
-export interface State {
-  calculatorState: CalculatorState;
-}
+const services = createServices();
+const calculator = createCalculator(services);
 
-const zero: ZeroState = states.zero.factory(Maybe.of(null));
-
-const initialState = {
-  calculatorState: zero
+const getZeroState = (): ZeroState => {
+  return zero.factory(Maybe.of(null));
 };
 
-const _state = initialState;
+const _input$ = new Rx.Subject(); // inputs from user
+
+const flipBinary = func => (x, y) => func(y, x);
+const flippedCalculator = flipBinary(calculator); // flip args for scan
+
+const initialState = getZeroState(); // seed state stream with initial state
+
+const _state$ = _input$ // reduce state from inputs
+  .scan(flippedCalculator, initialState);
+
+const getDisplay = s => services.getDisplayFromState(s);
+
+const _display$ = _state$
+  .map(getDisplay);
+
+const getPending = s => services.getPendingFromState(s);
+
+const _pending$ = _state$
+  .map(getPending);
+
+const _test$ = Rx.Observable.of('foo');
 
 @Injectable()
 class AppState {
-  private _state = _state;
-
-  calculator = createCalculator(services.createServices());
-
-  setState(nextState): void {
-    this._state = nextState;
-  }
-
-  getState() {
-    return this._state;
-  }
-
-  getDisplayNumber(): string {
-    const num = services.getDisplayFromState(
-      services.getNumberFromAccumulator
-    )(this._state.calculatorState);
-
-    return num;
-  }
-
-  getDisplayPending(): string {
-    const pending = services.getPendingFromState()(this._state.calculatorState);
-
-    return pending;
-  }
-
-  handleInput(input) {
-    const next = this.calculator(input, this._state.calculatorState);
-
-    this.setState({ calculatorState: next });
-  }
-
-  reset(): void {
-    this._state = initialState;
-  }
+  input$ = _input$;
+  state$ = _state$;
+  display$ = _display$;
+  pending$ = _pending$;
+  test$ = _test$;
 }
 
 export { AppState };

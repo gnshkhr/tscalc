@@ -8,22 +8,15 @@ import { AppState } from '../app.service';
   templateUrl: './calculator.template.html'
 })
 class Calculator {
-  localDisplayNumber;
-  localDisplayPending;
+  constructor(private appState: AppState) {}
 
-  constructor(public appState: AppState) {}
-
-  onNumberClick(input) {
-    const inputToString = x => "" + x;
-
-    this.appState.handleInput(inputToString(input));
-    this.localDisplayNumber = this.appState.getDisplayNumber();
-    this.localDisplayPending = this.appState.getDisplayPending();
+  onInput(val) {
+    this.appState.input$.next(val);
   }
 
-  ngOnInit() {
-    this.localDisplayNumber = this.appState.getDisplayNumber();
-  }
+  ngOnInit() {}
+
+  ngOnDestroy() {}
 }
 
 export { Calculator };

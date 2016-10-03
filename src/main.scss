@@ -1,4 +1,11 @@
 /* main.scss */
+$font-stack: 'Open Sans', sans-serif;
+
+html {
+  font-size: 100%;
+}
+
 body {
   height: 100vh;
+  font-family: $font-stack;
 }

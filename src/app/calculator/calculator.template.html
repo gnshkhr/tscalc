@@ -1,75 +1,76 @@
-<div>
-  <div>
-    <label>async display: {{appState.display$ | async}}</label>
+<div class="calculator">
+  <div class="display">
+    <label>{{appState.test$ | async}}</label>
   </div>
 
-  <div>
-    <label>async pending: {{appState.pending$ | async}}</label>
+  <div class="button-row">
+    <!--clear button-->
+    <button (click)="onInput('clear')">&#67;</button>
+
+    <!--division button-->
+    <button
+      [disabled]="appState.operationsDisabled$ | async"
+      (click)="onInput('divide')"
+    >
+      &#47;
+    </button>
   </div>
 
-  <div>
-    <label>async test: {{appState.test$ | async}}</label>
-  </div>
-
-  <div>
+  <div class="button-row">
     <button (click)="onInput('7')">7</button>
     <button (click)="onInput('8')">8</button>
     <button (click)="onInput('9')">9</button>
+
+    <!--multiplication button-->
+    <button
+      [disabled]="appState.operationsDisabled$ | async"
+      (click)="onInput('multiply')"
+    >
+      &#42;
+    </button>
   </div>
 
-  <div>
+  <div class="button-row">
     <button (click)="onInput('4')">4</button>
     <button (click)="onInput('5')">5</button>
     <button (click)="onInput('6')">6</button>
+
+    <!--subtraction / minus button-->
+    <button
+      [disabled]="appState.operationsDisabled$ | async"
+      (click)="onInput('subtract')"
+    >
+      &#45;
+    </button>
   </div>
 
-  <div>
+  <div class="button-row">
     <button (click)="onInput('1')">1</button>
     <button (click)="onInput('2')">2</button>
     <button (click)="onInput('3')">3</button>
+
+    <!--addition / add button-->
+    <button
+      [disabled]="appState.operationsDisabled$ | async"
+      (click)="onInput('add')"
+    >
+      &#43;
+    </button>
   </div>
 
-  <div>
+  <div class="button-row">
+    <button class="empty"></button>
+
     <button
       [disabled]="appState.zeroDisabled$ | async"
       (click)="onInput('0')"
     >
       0
     </button>
-  </div>
 
-  <div>
-    <button
-      [disabled]="appState.operationsDisabled$ | async"
-      (click)="onInput('add')"
-    >
-      +
-    </button>
+    <button class="empty"></button>
 
-    <button
-      [disabled]="appState.operationsDisabled$ | async"
-      (click)="onInput('subtract')"
-    >
-      -
-    </button>
-
-    <button
-      [disabled]="appState.operationsDisabled$ | async"
-      (click)="onInput('multiply')"
-    >
-      *
-    </button>
-
-    <button
-      [disabled]="appState.operationsDisabled$ | async"
-      (click)="onInput('divide')"
-    >
-      /
-    </button>
-  </div>
-
-  <div>
-    <button (click)="onInput('clear')">clear</button>
-    <button (click)="onInput('equals')">equals</button>
+    <!--equals button-->
+    <button (click)="onInput('equals')">&#61;</button>
   </div>
 </div>

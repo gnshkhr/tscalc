@@ -1,11 +1,13 @@
 {
   "main": {
-    "js": "/tscalc/main.bundle.js"
+    "js": "/tscalc/main.bundle.js",
+    "css": "/tscalc/main.bundle.css"
   },
   "polyfills": {
     "js": "/tscalc/polyfills.bundle.js"
   },
   "vendor": {
-    "js": "/tscalc/vendor.bundle.js"
+    "js": "/tscalc/vendor.bundle.js",
+    "css": "/tscalc/vendor.bundle.css"
   }
 }

@@ -1,0 +1,13 @@
+{
+  "main": {
+    "js": "/tscalc/main.bundle.js",
+    "css": "/tscalc/main.9ec429f371a95f725568.css"
+  },
+  "polyfills": {
+    "js": "/tscalc/polyfills.bundle.js"
+  },
+  "vendor": {
+    "js": "/tscalc/vendor.bundle.js",
+    "css": "/tscalc/vendor.9ec429f371a95f725568.css"
+  }
+}

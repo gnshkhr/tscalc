@@ -56,6 +56,10 @@ module.exports = function(options) {
           test: /\.html$/,
           loader: 'raw-loader',
           exclude: [path.join(helpers.sourceDir, 'index.html')]
+        },
+        {
+          test: /\.png$/,
+          loader: 'file'
         }
       ]// ,
 

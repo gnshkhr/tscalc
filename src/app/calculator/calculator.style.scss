@@ -1,4 +1,8 @@
 $light-background: #f3f3f3;
+$primary: #4CB2D4;
+$secondary: #EE4035;
+$tertiary: #F3A530;
+$text-color: #fefefe;
 
 :host {
   display: flex;
@@ -8,15 +12,62 @@ $light-background: #f3f3f3;
   height: 100%;
 }
 
+.title-section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-content: center;
+
+  margin: 0;
+  padding: 0;
+
+  font-size: 0.8em;
+  font-weight: bold;
+  color: $text-color;
+
+  .title {
+    text-transform: uppercase;
+  }
+
+  .github-link {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+
+    text-decoration: none;
+    text-transform: uppercase;
+    color: $text-color;
+
+    margin: 0;
+    padding: 0;
+
+    transition: all 0.2s ease-in;
+
+    &:hover {
+      color: lighten($tertiary, 25%);
+    }
+
+    &:focus {}
+
+    &:active {
+      color: lighten($primary, 50%);
+    }
+  }
+}
+
 .calculator {
   flex-basis: 410px;
-  width: 240px;
+  width: 270px;
 
   margin: 0 auto;
-  padding: 0 10px;
+  padding: 15px 15px;
 
   box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.4);
   border-radius: 8px;
+  background-color: $primary;
 }
 
 .display {
@@ -29,16 +80,20 @@ $light-background: #f3f3f3;
 
   padding: 2px 10px;
   margin: 8px 0px;
-  // margin-bottom: 4px;
+  margin-bottom: 16px;
 
   font-size: 1.2em;
 
   box-shadow: inset -2px -1px 0px rgba(0, 0, 0, 0.2);
 
+  font-weight: bold;
+
   border-style: solid;
   border-width: 1px;
   border-color: rgba(0, 0, 0, 0.2);
   border-radius: 8px;
+
+  background-color: $light-background;
 }
 
 .button-row {
@@ -52,7 +107,7 @@ $light-background: #f3f3f3;
   margin: 10px 0;
 
   button {
-    flex-basis: 50px;
+    flex-basis: 60px;
 
     background-color: $light-background;
     border-radius: 14px;
@@ -62,11 +117,16 @@ $light-background: #f3f3f3;
 
     cursor: pointer;
 
+    background-color: $tertiary;
+    color: $text-color;
     box-shadow: 1px 2px rgba(0, 0, 0, 0.4);
 
-    &:hover {}
+    &:hover {
+      background-color: darken($tertiary, 10%);
+    }
 
     &:active {
+      background-color: lighten($tertiary, 15);
       box-shadow: 0 0px rgba(0, 0, 0, 0.4);
       transform: translateY(5px);
       outline: none;
@@ -74,16 +134,22 @@ $light-background: #f3f3f3;
 
     &:focus {
       outline: none;
+      // background-color: $tertiary;
     }
 
     &:disabled {
       transform: none;
-      background-color: darken($light-background, 25%);
+      background-color: $secondary;
+      color: $primary;
       cursor: not-allowed;
     }
 
     &.empty {
       visibility: hidden;
+    }
+
+    &.digit {
+      font-weight: bold;
     }
   }
 }

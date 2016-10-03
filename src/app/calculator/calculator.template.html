@@ -1,4 +1,15 @@
 <div class="calculator">
+  <div class="title-section">
+    <label class="title">TSCalc</label>
+
+    <span>
+      <a class="github-link" href="https://github.com/jomcode/tscalc">
+        <span class="github-logo"></span>
+        Source
+      </a>
+    </span>
+  </div>
+
   <div class="display">
     <label>{{appState.test$ | async}}</label>
   </div>
@@ -17,9 +28,9 @@
   </div>
 
   <div class="button-row">
-    <button (click)="onInput('7')">7</button>
-    <button (click)="onInput('8')">8</button>
-    <button (click)="onInput('9')">9</button>
+    <button class="digit" (click)="onInput('7')">7</button>
+    <button class="digit" (click)="onInput('8')">8</button>
+    <button class="digit" (click)="onInput('9')">9</button>
 
     <!--multiplication button-->
     <button
@@ -31,9 +42,9 @@
   </div>
 
   <div class="button-row">
-    <button (click)="onInput('4')">4</button>
-    <button (click)="onInput('5')">5</button>
-    <button (click)="onInput('6')">6</button>
+    <button class="digit" (click)="onInput('4')">4</button>
+    <button class="digit" (click)="onInput('5')">5</button>
+    <button class="digit" (click)="onInput('6')">6</button>
 
     <!--subtraction / minus button-->
     <button
@@ -45,9 +56,9 @@
   </div>
 
   <div class="button-row">
-    <button (click)="onInput('1')">1</button>
-    <button (click)="onInput('2')">2</button>
-    <button (click)="onInput('3')">3</button>
+    <button class="digit" (click)="onInput('1')">1</button>
+    <button class="digit" (click)="onInput('2')">2</button>
+    <button class="digit" (click)="onInput('3')">3</button>
 
     <!--addition / add button-->
     <button
@@ -62,6 +73,7 @@
     <button class="empty"></button>
 
     <button
+      class="digit"
       [disabled]="appState.zeroDisabled$ | async"
       (click)="onInput('0')"
     >

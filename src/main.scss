@@ -9,3 +9,17 @@ body {
   height: 100vh;
   font-family: $font-stack;
 }
+
+.github-logo {
+  display: inline-block;
+
+  background-image: url('./assets/GitHub-Mark-Light-32px.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  height: 15px;
+  width: 15px;
+
+  margin-right: 4px;
+}

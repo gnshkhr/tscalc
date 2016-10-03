@@ -9,7 +9,9 @@
     "dev": "better-npm-run dev",
     "dev:hot": "better-npm-run dev:hot",
     "test": "better-npm-run test",
-    "test:watch": "better-npm-run test:watch"
+    "test:watch": "better-npm-run test:watch",
+    "github-deploy:dev": "better-npm-run github-deploy:dev",
+    "github-deploy:prod": "better-npm-run github-deploy:prod"
   },
   "betterScripts": {
     "dev": {
@@ -38,6 +40,16 @@
         "NODE_ENV": "test",
         "NO_PASS": "enabled"
       }
+    },
+    "github-deploy:dev": {
+      "command": "webpack --config config/webpack.ghpages.js --progress --profile",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    "github-deploy:prod": {
+      "command": "",
+      "env": {}
     }
   },
   "keywords": [],
@@ -63,6 +75,7 @@
     "expose-loader": "^0.7.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
+    "gh-pages": "^0.11.0",
     "html-webpack-plugin": "^2.22.0",
     "jasmine-core": "^2.5.2",
     "json-loader": "^0.5.4",

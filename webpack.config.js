@@ -8,4 +8,9 @@ switch (process.env.NODE_ENV) {
     module.exports = require('./config/webpack.test')();
     break;
   }
+
+  case 'production': {
+    module.exports = require('./config/webpack.prod')();
+    break;
+  }
 }

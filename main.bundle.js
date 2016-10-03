@@ -5,7 +5,7 @@ webpackJsonp([0],{
 
 	"use strict";
 	var platform_browser_dynamic_1 = __webpack_require__("./node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js");
-	__webpack_require__("./src/main.scss");
+	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./main.scss\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	var app_1 = __webpack_require__("./src/app/index.ts");
 	function main() {
 	    return platform_browser_dynamic_1.platformBrowserDynamic()
@@ -21,18 +21,6 @@ webpackJsonp([0],{
 /***/ function(module, exports) {
 
 	module.exports = "<div>\r\n  <div>\r\n    <label>async display: {{appState.display$ | async}}</label>\r\n  </div>\r\n\r\n  <div>\r\n    <label>async pending: {{appState.pending$ | async}}</label>\r\n  </div>\r\n\r\n  <div>\r\n    <label>async test: {{appState.test$ | async}}</label>\r\n  </div>\r\n\r\n  <div>\r\n    <button (click)=\"onInput('7')\">7</button>\r\n    <button (click)=\"onInput('8')\">8</button>\r\n    <button (click)=\"onInput('9')\">9</button>\r\n  </div>\r\n\r\n  <div>\r\n    <button (click)=\"onInput('4')\">4</button>\r\n    <button (click)=\"onInput('5')\">5</button>\r\n    <button (click)=\"onInput('6')\">6</button>\r\n  </div>\r\n\r\n  <div>\r\n    <button (click)=\"onInput('1')\">1</button>\r\n    <button (click)=\"onInput('2')\">2</button>\r\n    <button (click)=\"onInput('3')\">3</button>\r\n  </div>\r\n\r\n  <div>\r\n    <button\r\n      [disabled]=\"appState.zeroDisabled$ | async\"\r\n      (click)=\"onInput('0')\"\r\n    >\r\n      0\r\n    </button>\r\n  </div>\r\n\r\n  <div>\r\n    <button\r\n      [disabled]=\"appState.operationsDisabled$ | async\"\r\n      (click)=\"onInput('add')\"\r\n    >\r\n      +\r\n    </button>\r\n\r\n    <button\r\n      [disabled]=\"appState.operationsDisabled$ | async\"\r\n      (click)=\"onInput('subtract')\"\r\n    >\r\n      -\r\n    </button>\r\n\r\n    <button\r\n      [disabled]=\"appState.operationsDisabled$ | async\"\r\n      (click)=\"onInput('multiply')\"\r\n    >\r\n      *\r\n    </button>\r\n\r\n    <button\r\n      [disabled]=\"appState.operationsDisabled$ | async\"\r\n      (click)=\"onInput('divide')\"\r\n    >\r\n      /\r\n    </button>\r\n  </div>\r\n\r\n  <div>\r\n    <button (click)=\"onInput('clear')\">clear</button>\r\n    <button (click)=\"onInput('equals')\">equals</button>\r\n  </div>\r\n</div>\r\n"
-
-/***/ },
-
-/***/ "./src/app/index.ts":
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	function __export(m) {
-	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-	}
-	__export(__webpack_require__("./src/app/app.module.ts"));
-	
 
 /***/ },
 
@@ -119,7 +107,7 @@ webpackJsonp([0],{
 	    Calculator = __decorate([
 	        core_1.Component({
 	            selector: 'calculator-gui',
-	            styles: [__webpack_require__("./src/app/calculator/calculator.style.scss")],
+	            styles: [__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./calculator.style.scss\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()))],
 	            template: __webpack_require__("./src/app/calculator/calculator.template.html")
 	        }), 
 	        __metadata('design:paramtypes', [(typeof (_a = typeof app_service_1.AppState !== 'undefined' && app_service_1.AppState) === 'function' && _a) || Object])
@@ -9459,33 +9447,34 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ "./src/calculator/states/helpers/index.ts":
+/***/ "./src/app/index.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var accumulatenonzero_1 = __webpack_require__("./src/calculator/states/helpers/accumulatenonzero.ts");
-	var accumulatezero_1 = __webpack_require__("./src/calculator/states/helpers/accumulatezero.ts");
-	var getcomputedstate_1 = __webpack_require__("./src/calculator/states/helpers/getcomputedstate.ts");
-	var ifnone_1 = __webpack_require__("./src/calculator/states/helpers/ifnone.ts");
-	var replacepending_1 = __webpack_require__("./src/calculator/states/helpers/replacepending.ts");
-	var factory_1 = __webpack_require__("./src/calculator/states/accumulator/factory.ts");
-	var factory_2 = __webpack_require__("./src/calculator/states/computed/factory.ts");
-	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = {
-	    accumulateNonZero: accumulatenonzero_1.default(factory_1.default),
-	    accumulateZero: accumulatezero_1.default(factory_1.default),
-	    getComputedState: getcomputedstate_1.default(ifnone_1.default, factory_2.default),
-	    ifNone: ifnone_1.default,
-	    replacePending: replacepending_1.default(factory_2.default),
-	};
+	function __export(m) {
+	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+	}
+	__export(__webpack_require__("./src/app/app.module.ts"));
 	
 
 /***/ },
 
-/***/ "./src/main.scss":
-/***/ function(module, exports) {
+/***/ "./src/calculator/states/helpers/accumulatenonzero.ts":
+/***/ function(module, exports, __webpack_require__) {
 
-	// removed by extract-text-webpack-plugin
+	"use strict";
+	var ramda_1 = __webpack_require__("./node_modules/ramda/dist/ramda.js");
+	var accumulateNonZeroHelper = function (accumulatorFactory, services, digit, state) {
+	    var currentPending = state.pendingOperation;
+	    var currentDigits = state.digits.slice();
+	    var nextDigits = services.accumulateNonZero(digit, currentDigits);
+	    var nextState = accumulatorFactory(currentPending, nextDigits);
+	    return nextState;
+	};
+	var helper = ramda_1.curry(accumulateNonZeroHelper);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = helper;
+	
 
 /***/ },
 
@@ -10000,54 +9989,28 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ "./src/app/calculator/calculator.style.scss":
-/***/ function(module, exports, __webpack_require__) {
-
-	
-	        var result = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js!./node_modules/sass-loader/index.js!./src/app/calculator/calculator.style.scss");
-
-	        if (typeof result === "string") {
-	            module.exports = result;
-	        } else {
-	            module.exports = result.toString();
-	        }
-	    
-
-/***/ },
-
-/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js!./node_modules/sass-loader/index.js!./src/app/calculator/calculator.style.scss":
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
-	// imports
-
-
-	// module
-	exports.push([module.id, "", ""]);
-
-	// exports
-
-
-/***/ },
-
-/***/ "./src/calculator/states/helpers/accumulatenonzero.ts":
+/***/ "./src/calculator/states/helpers/index.ts":
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var ramda_1 = __webpack_require__("./node_modules/ramda/dist/ramda.js");
-	var accumulateNonZeroHelper = function (accumulatorFactory, services, digit, state) {
-	    var currentPending = state.pendingOperation;
-	    var currentDigits = state.digits.slice();
-	    var nextDigits = services.accumulateNonZero(digit, currentDigits);
-	    var nextState = accumulatorFactory(currentPending, nextDigits);
-	    return nextState;
-	};
-	var helper = ramda_1.curry(accumulateNonZeroHelper);
+	var accumulatenonzero_1 = __webpack_require__("./src/calculator/states/helpers/accumulatenonzero.ts");
+	var accumulatezero_1 = __webpack_require__("./src/calculator/states/helpers/accumulatezero.ts");
+	var getcomputedstate_1 = __webpack_require__("./src/calculator/states/helpers/getcomputedstate.ts");
+	var ifnone_1 = __webpack_require__("./src/calculator/states/helpers/ifnone.ts");
+	var replacepending_1 = __webpack_require__("./src/calculator/states/helpers/replacepending.ts");
+	var factory_1 = __webpack_require__("./src/calculator/states/accumulator/factory.ts");
+	var factory_2 = __webpack_require__("./src/calculator/states/computed/factory.ts");
 	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = helper;
+	exports.default = {
+	    accumulateNonZero: accumulatenonzero_1.default(factory_1.default),
+	    accumulateZero: accumulatezero_1.default(factory_1.default),
+	    getComputedState: getcomputedstate_1.default(ifnone_1.default, factory_2.default),
+	    ifNone: ifnone_1.default,
+	    replacePending: replacepending_1.default(factory_2.default),
+	};
 	
 
 /***/ }
 
 });
-//# sourceMappingURL=main.map
+//# sourceMappingURL=main.0.map

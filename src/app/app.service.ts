@@ -151,6 +151,7 @@ const _operationsDisabled$ = _state$ // if equals was pressed disable +,-,*,/
 // if pending op is division with empty accumulator return true
 const _zeroDisabled$ = _state$
   .map(state => {
+    // TODO refactor ugly nested conditionals
     if (!state.pendingOperation.isNothing()) {
       if (state.pendingOperation.some()[0] === 'divide') {
         if (state.kind === 'accumulatorState') {

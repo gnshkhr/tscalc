@@ -1,4 +1,5 @@
 #
+[Demo (https://jomcode.github.io/tscalc/)](https://jomcode.github.io/tscalc/)
 
 `calculator:: input * state -> state`
 

@@ -29,7 +29,9 @@ const config = webpackMerge(webpackConfig, {
       this.plugin('done', function(stats) {
         console.log('deploying to github pages...');
 
-        const log = msg => console.log(msg);
+        const log = function(msg) {
+          console.log(msg);
+        };
 
         const options = {
           logger: log,
@@ -42,7 +44,9 @@ const config = webpackMerge(webpackConfig, {
             console.log('github pages deployment done with ERROR', err);
             throw err;
           }
-          console.log('github pages deployment successful');
+          else {
+            console.log('github pages deployment successful');
+          }
         });
       });
     }

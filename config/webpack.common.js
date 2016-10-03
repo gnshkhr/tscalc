@@ -4,18 +4,14 @@ const autoprefixer = require('autoprefixer');
 const ForkCheckerPlugin = require('awesome-typescript-loader').ForkCheckerPlugin;
 const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
 
 const helpers = require('./helpers');
 
 const METADATA = {
-  title: 'Calculator',
+  title: 'TypeScript Calculator',
   baseUrl: '/'
 };
-
-const extractVendor = new ExtractTextPlugin('[name].[hash].css');
-const extractMain = new ExtractTextPlugin('[name].[hash].css');
 
 module.exports = function(options) {
   const config = {
@@ -60,28 +56,6 @@ module.exports = function(options) {
           test: /\.html$/,
           loader: 'raw-loader',
           exclude: [path.join(helpers.sourceDir, 'index.html')]
-        },
-        {
-          test: /\.scss$/,
-          loaders: ['to-string-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
-          exclude: [
-            path.join(helpers.sourceDir, 'vendor.browser.ts'),
-            path.join(helpers.sourceDir, 'main.scss'),
-            helpers.modulesDir
-          ]
-        },
-        {
-          test: /\.css$/,
-          loader: extractVendor.extract('style', 'css!postcss'),
-          include: [
-            path.join(helpers.sourceDir, 'vendor.browser.ts'),
-            path.join(helpers.modulesDir, 'normalize.css')
-          ]
-        },
-        {
-          test: /\.scss$/,
-          loader: extractMain.extract('style', 'css!postcss!sass'),
-          include: [path.join(helpers.sourceDir, 'main.scss')]
         }
       ]// ,
 
@@ -109,10 +83,7 @@ module.exports = function(options) {
       new HtmlWebpackPlugin({
         template: path.join(helpers.sourceDir, 'index.html'),
         chunksSortMode: 'dependency'
-      }),
-
-      extractVendor,
-      extractMain
+      })
     ],
 
     node: {

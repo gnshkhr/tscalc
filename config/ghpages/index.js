@@ -2,22 +2,35 @@ const execSync = require('child_process').execSync;
 
 const helpers = require('../helpers');
 
-const REPO_NAME_RE = /Push {2}URL: https:\/\/github\.com\/.*\/(.*)\.git/;
+const HTTPS_REPO_NAME_RE = /Push {2}URL: https:\/\/github\.com\/.*\/(.*)\.git/;
+const SSH_REPO_NAME_RE = /Push\s*URL:\s*git@github\.com:.*\/(.*)\.git/;
 
 function getWebpackConfig() {
-  if (helpers.isDevelopment) return require('../webpack.dev');
-  if (helpers.isProduction) return require('../webpack.prod');
+  if (helpers.isDevelopment) return require('../webpack.dev')();
+  if (helpers.isProduction) return require('../webpack.prod')();
   throw new Error('Invalid ghpages environment');
 }
 
 function getRepoName(remoteName) {
-  const name = remoteName || 'origin';
+  remoteName = remoteName || 'origin';
 
-  const out = execSync(`git remote show ${name}`);
-  const match = REPO_NAME_RE.exec(out);
+  const outHttps = execSync('git remote show ' + remoteName);
+  const matchHttps = HTTPS_REPO_NAME_RE.exec(outHttps);
 
-  if (!match) throw new Error(`No repository found on remote ${name}`);
-  return match[1];
+  const outSsh = execSync('git remote show ' + remoteName);
+  const matchSsh = SSH_REPO_NAME_RE.exec(outSsh);
+
+  if (!matchHttps) {
+    if (!matchSsh) {
+      throw new Error('No repository found on remote ' + remoteName);
+    }
+    else {
+      return matchSsh[1];
+    }
+  }
+  else {
+    return matchHttps[1];
+  }
 }
 
 function stripTrailing(str, char) {

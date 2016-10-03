@@ -1,7 +1,7 @@
 {
   "main": {
-    "js": "/tscalc/main.cc4bc45de8d8b6a3956a.bundle.js",
-    "css": "/tscalc/main.c36e8e9e23164a0ce52dccd7f3934471.css"
+    "js": "/tscalc/main.72392e62f16376b256a3.bundle.js",
+    "css": "/tscalc/main.b71a3a79109a684129824daaaf6ce26e.css"
   },
   "polyfills": {
     "js": "/tscalc/polyfills.93a9b5a3ad03d7239a25.bundle.js"

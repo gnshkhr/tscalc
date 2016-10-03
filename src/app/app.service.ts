@@ -148,11 +148,20 @@ const _operationsDisabled$ = _state$ // if equals was pressed disable +,-,*,/
     return false;
   });
 
-const _zeroDisabled$ = _state$ // if pending op is division return true
+// if pending op is division with empty accumulator return true
+const _zeroDisabled$ = _state$
   .map(state => {
-    return !state.pendingOperation.isNothing() ?
-      state.pendingOperation.some()[0] === 'divide' :
-      false;
+    if (!state.pendingOperation.isNothing()) {
+      if (state.pendingOperation.some()[0] === 'divide') {
+        if (state.kind === 'accumulatorState') {
+          if (state.digits.length > 0) {
+            return false;
+          }
+        }
+        return true;
+      }
+    }
+    return false;
   });
 
 @Injectable()

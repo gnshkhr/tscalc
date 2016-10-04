@@ -1,3 +1,5 @@
+import { Either } from '../../generic';
+
 const performOperation = (): PerformOperation => {
   const handleAdd = (x: number, y: number): number => x + y;
   const handleSubtract = (x: number, y: number): number => x - y;

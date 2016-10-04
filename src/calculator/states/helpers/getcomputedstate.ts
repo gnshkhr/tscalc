@@ -1,6 +1,6 @@
 import { curry } from 'ramda';
 
-import { Maybe } from '../../../generic';
+import { Maybe, Either } from '../../../generic';
 
 const getComputedStateHelper =
   (

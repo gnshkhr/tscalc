@@ -1,20 +1,34 @@
-import Either from './';
+import { Either } from './';
 
 describe('Either', () => {
-  describe ('Left', () => {
-    it('doesnt change', () => {
-      const testFunc = x => x + 1;
-      const testMonadicFunc = x => Either.right(x);
-      const testLiftedFunc = Either.right(x => x);
+  it('', () => {
+    const createId = id => id > 0 ?
+      Either.of(id) :
+      Either.left('Must be positive');
 
-      const result = Either.left(1)
-        .map(testFunc)
-        .bind(testMonadicFunc)
-        .ap(testLiftedFunc);
+    const createName = name => (name !== null && name.trim().length > 0) ?
+      Either.of(name) :
+      Either.left('Name cannot be empty or whitespace');
 
-      const expectedResult = Either.left(1);
+    const createPerson = id => name => ({ id, name });
 
-      expect(result).toEqual(expectedResult);
-    });
+    const foo = (id, name) => {
+      const idResult = createId(id);
+      const nameResult = createName(name);
+
+      const liftedCreatePerson = Either.map(createPerson, idResult);
+
+      return Either.ap(liftedCreatePerson, nameResult);
+    };
+
+    const successful = foo(5, 'foo');
+
+    // console.log('successful', successful);
+
+    const failure = foo(0, 'foo');
+
+    // console.log('failure', failure);
+
+    pending();
   });
 });

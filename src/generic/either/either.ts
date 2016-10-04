@@ -1,6 +1,4 @@
-const id = x => x;
-
-class Left<L> implements IMonad<L>, ILeft<L> {
+class Left<L> implements ILeft<L> {
   readonly value: L;
 
   private constructor(val: L) {
@@ -8,65 +6,94 @@ class Left<L> implements IMonad<L>, ILeft<L> {
   }
 
   static of<L>(val: L): Left<L> {
-    return new Left(val);
+    return new Left<L>(val);
   }
 
-  static isLeft<T>(l: T): boolean {
-    return l.constructor === Left;
+  map(f) {
+    return Left.of(this.value);
   }
 
-  map<U>(f: (value: L) => U): Left<U> {
-    return Left.of(id(this.value));
-  }
-
-  bind<U>(monadicF: (value: L) => Left<U>): Left<U> {
-    return Left.of(id(this.value));
-  }
-
-  ap<U>(liftedF: Left<(value: L) => U>): Left<U> {
-    return Left.of(id(this.value));
+  ap(f) {
+    return Left.of(this.value);
   }
 }
 
-class Right<R> implements IMonad<R>, IRight<R> {
+class Right<R> implements IRight<R> {
   readonly value: R;
 
   private constructor(val: R) {
     this.value = val;
   }
 
-  static of<R>(val: R): Right<R> {
-    return new Right(val);
+  static of<R>(val: R): Left<R> {
+    return new Right<R>(val);
   }
 
-  map<U>(f: (value: R) => U): Right<U> {
+  map(f) {
     return Right.of(f(this.value));
   }
 
-  bind<U>(monadicF: (value: R) => Right<U>): Right<U> {
-    return monadicF(this.value);
+  ap(liftedF) {
+    return liftedF.map(f => f(this.value));
   }
 
-  ap<U>(liftedF: Right<(value: R) => U>): Right<U> {
-    // derived from bind
-    return liftedF.bind(f => this.map(f));
+  bind(monadicF) {
+    return monadicF(this.value);
   }
 }
 
 class Either<L, R> {
   private constructor() {}
 
-  static left<L, R>(l: L): Left<L> {
-    return Left.of(l);
+  static of<R>(val: R) {
+    return Right.of<R>(val);
   }
 
-  static right<L, R>(r: R): Right<R> {
-    return Right.of(r);
+  static right<R>(val: R) {
+    return Right.of<R>(val);
   }
 
-  static isLeft<T>(l: T): boolean {
-    return Left.isLeft(l);
+  static left<L>(val: L) {
+    return Left.of<L>(val);
+  }
+
+  static isLeft(val) {
+    return val.constructor === Left;
+  }
+
+  static isRight(val) {
+    return val.constructor === Right;
+  }
+
+  static map(f, result) {
+    switch (result.constructor) {
+      case Left: {
+        return result.map(f);
+      }
+
+      case Right: {
+        return result.map(f);
+      }
+    }
+  }
+
+  static ap(liftedF, result) {
+    if (Either.isRight(liftedF) && Either.isRight(result)) {
+      return result.ap(liftedF);
+    }
+
+    if (Either.isLeft(liftedF) && Either.isRight(result)) {
+      return liftedF.ap(liftedF); // return left
+    }
+
+    if (Either.isRight(liftedF) && Either.isLeft(result)) {
+      return result.ap(result); // return left;
+    }
+
+    if (Either.isLeft(liftedF) && Either.isLeft(result)) {
+      return liftedF.ap(liftedF); // return left
+    }
   }
 }
 
-export default Either;
+export { Either };

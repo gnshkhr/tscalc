@@ -1,2 +1,2 @@
 /* Either */
-export { default } from './either';
+export * from './either';

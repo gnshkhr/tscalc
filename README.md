@@ -3,6 +3,14 @@
 
 `calculator:: input * state -> state`
 
+## States
+
+### ZeroState
+
+### AccumulatorState
+
+### ComputedState
+
 ## TODO
 - `Either` implementation
 - `ErrorState` implementation

@@ -1,7 +1,7 @@
 /* Generics */
 import Identity from './identity';
 import Maybe from './maybe';
-import Either from './either';
+import { Either } from './either';
 
 const generics = {
   Identity,

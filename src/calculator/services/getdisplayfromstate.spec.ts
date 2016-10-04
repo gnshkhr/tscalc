@@ -2,7 +2,7 @@ import { Maybe } from '../../generic';
 
 import getDisplayFromState from './getdisplayfromstate';
 
-const fakeService = () => accState => parseFloat(accState.digits.slice());
+const fakeService = accState => parseFloat(accState.digits.slice());
 
 describe('GetDisplayFromState CalculatorService', () => {
   describe('getting display from ZeroState', () => {

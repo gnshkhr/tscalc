@@ -41,3 +41,12 @@
 | --- | --- | --- |
 | All Except Clear | Nothing. | ErrorState |
 | Clear | Clear any pending and go to ZeroState. | ZeroState |
+
+## TODO
+- ng2 tests
+- `Either` tests
+- make tests more descriptive
+- refactor tests to be less brittle
+- decimal?
+- negate?
+- square rt?

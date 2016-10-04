@@ -1,4 +1,7 @@
 # TypeScript Calculator
+
+[![Test Coverage](https://codeclimate.com/github/jomcode/tscalc/badges/coverage.svg)](https://codeclimate.com/github/jomcode/tscalc/coverage)
+
 [Demo (https://jomcode.github.io/tscalc/)](https://jomcode.github.io/tscalc/)
 
 `calculator:: input * state -> state`
@@ -11,13 +14,4 @@
 
 ### ComputedState
 
-## TODO
-- `Either` implementation
-- `ErrorState` implementation
-- `getComputedState` create ErrorState
-- break state handlers switch cases up into delegated helper functions for
-Zero, NonZeroDigit, Operation, Equals, Clear etc
-- move Maybe creation to state factories?
-- make test descriptions more detailed/relevant
-- refactor and use `"strictNullchecks": true` in tsconfig
-- styling / animations
+### ErrorState

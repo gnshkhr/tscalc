@@ -14,16 +14,16 @@ module.exports = function initWebpackTest(options) {
     },
 
     module: {
-      // preLoaders: [
-        // {
-          // test: /\.js$/,
-          // loader: 'source-map-loader',
-          // exclude: [
-            // path.join(helpers.modulesDir, 'rxjs'),
-            // path.join(helpers.modulesDir, '@angular')
-          // ]
-        // }
-      // ],
+      preLoaders: [
+        {
+          test: /\.js$/,
+          loader: 'source-map-loader',
+          exclude: [
+            path.join(helpers.modulesDir, 'rxjs'),
+            path.join(helpers.modulesDir, '@angular')
+          ]
+        }
+      ],
 
       loaders: [
         {
@@ -61,9 +61,21 @@ module.exports = function initWebpackTest(options) {
           loader: 'raw-loader',
           exclude: [path.join(helpers.sourceDir, 'index.html')]
         }
-      ]
+      ],
 
-      // postLoaders: []
+      postLoaders: [
+        {
+          test: /\.(js|ts)$/,
+          loader: 'istanbul-instrumenter-loader',
+          exclude: [
+            /\.(e2e|spec)\.ts$/,
+            /node_modules/,
+            /\index.ts$/,
+            path.join(helpers.rootDir, 'config', 'spec.bundle.js'),
+            path.join(helpers.sourceDir, 'calculator', 'utilities', 'fakeservices.ts')
+          ]
+        }
+      ]
     },
 
     plugins: [

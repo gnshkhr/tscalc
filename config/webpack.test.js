@@ -72,7 +72,8 @@ module.exports = function initWebpackTest(options) {
             /node_modules/,
             /\index.ts$/,
             path.join(helpers.rootDir, 'config', 'spec.bundle.js'),
-            path.join(helpers.sourceDir, 'calculator', 'utilities', 'fakeservices.ts')
+            path.join(helpers.sourceDir, 'calculator', 'utilities', 'fakeservices.ts'),
+            path.join(helpers.sourceDir, 'calculator', 'createcalculator.ts')
           ]
         }
       ]

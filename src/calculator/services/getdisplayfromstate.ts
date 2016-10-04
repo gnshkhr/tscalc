@@ -20,6 +20,11 @@ const getDisplayFromState =
         const text = numberToString(state.display);
         return text;
       }
+
+      case 'errorState': {
+        const text: OperationError = state.error;
+        return text;
+      }
     }
   };
 };

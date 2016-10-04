@@ -4,6 +4,7 @@ const createCalculator = (services: CalculatorServices): Calculator => {
   const zero = states.zero.handler(services);
   const accumulator = states.accumulator.handler(services);
   const computed = states.computed.handler(services);
+  const error = states.error.handler;
 
   return (input, state): CalculatorState => {
 
@@ -18,6 +19,10 @@ const createCalculator = (services: CalculatorServices): Calculator => {
 
       case 'computedState': {
         return computed(state, input);
+      }
+
+      case 'errorState': {
+        return error(state, input);
       }
     }
   };

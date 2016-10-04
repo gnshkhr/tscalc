@@ -8,10 +8,14 @@ const performOperation = (): PerformOperation => {
 
   return (operation: Operation, x: number, y: number): OperationResult => {
     switch (operation) {
-      case 'add': { return handleAdd(x, y); }
-      case 'subtract': { return handleSubtract(x, y); }
-      case 'multiply': { return handleMultiply(x, y); }
-      case 'divide': { return handleDivide(x, y); }
+      case 'add': { return Either.of(handleAdd(x, y)); }
+      case 'subtract': { return Either.of(handleSubtract(x, y)); }
+      case 'multiply': { return Either.of(handleMultiply(x, y)); }
+      case 'divide': {
+        return y === 0 ?
+          Either.left<DivideByZeroError>('Cannot divide by zero') :
+          Either.of(handleDivide(x, y));
+      }
     }
   };
 };

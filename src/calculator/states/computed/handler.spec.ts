@@ -44,8 +44,7 @@ describe('ComputedState #handler', () => {
   });
 
   describe('handling input of Operation', () => {
-    it('returns Proper ComputedState', () => {
-      pending();
+    it('returns ComputedState with swapped operation', () => {
       const testState = getComputedState(['add', 10], 5);
 
       const result = handler(fakeServices, testState, 'multiply');
@@ -61,7 +60,6 @@ describe('ComputedState #handler', () => {
 
   describe('handling input of Equals', () => {
     it('returns proper ComputedState', () => {
-      pending();
       const testState = getComputedState(['add', 10], 5);
 
       const result = handler(fakeServices, testState, 'equals');

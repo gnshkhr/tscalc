@@ -19,5 +19,10 @@ interface IMaybe<T> extends IMonad<T> {
   some(): T;
 }
 
-interface ILeft<L> {}
-interface IRight<R> {}
+interface ILeft<L> {
+  value: L;
+}
+
+interface IRight<R> {
+  value: R;
+}

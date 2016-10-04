@@ -16,6 +16,10 @@ class Left<L> implements ILeft<L> {
   ap(f) {
     return Left.of(this.value);
   }
+
+  toString(): string {
+    return `Left(${this.value})`;
+  }
 }
 
 class Right<R> implements IRight<R> {
@@ -39,6 +43,10 @@ class Right<R> implements IRight<R> {
 
   bind(monadicF) {
     return monadicF(this.value);
+  }
+
+  toString(): string {
+    return `Right(${this.value})`;
   }
 }
 

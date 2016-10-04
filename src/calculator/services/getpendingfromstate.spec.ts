@@ -233,4 +233,18 @@ describe('GetPendingFromState CalculatorService', () => {
       });
     });
   });
+
+  describe('getting pendingOperation from ErrorState', () => {
+    it('gets expected pendingOperation', () => {
+      const testState: ErrorState = {
+        kind: 'errorState',
+        error: 'Cannot divide by zero'
+      };
+
+      const result = getPendingFromState()(testState);
+      const expectedResult = '';
+
+      expect(result).toEqual(expectedResult);
+    });
+  });
 });

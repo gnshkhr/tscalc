@@ -31,6 +31,10 @@ const getPendingFromState = (): GetPendingFromState => {
       case 'computedState': {
         return displayForPendingOperation(state.pendingOperation);
       }
+
+      case 'errorState': {
+        return '';
+      }
     }
   };
 };

@@ -187,4 +187,24 @@ describe('#getComputedState state handler helper', () => {
       });
     });
   });
+
+  describe('division', () => {
+      it('returns expected ErrorState when dividing by zero', () => {
+        const testState: AccumulatorState = {
+          kind: 'accumulatorState',
+          pendingOperation: Maybe.of<PendingOperation>(['divide', 10]),
+          digits: '0'
+        };
+
+        const result = getComputedState(
+          noop, csFactory, fakeServices, testState, Maybe.of<Operation>('add'));
+
+        const expectedResult: ErrorState = {
+          kind: 'errorState',
+          error: 'Cannot divide by zero'
+        };
+
+        expect(result).toEqual(expectedResult);
+      });
+    });
 });

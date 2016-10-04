@@ -48,4 +48,18 @@ describe('GetDisplayFromState CalculatorService', () => {
       expect(result).toEqual(expectedResult);
     });
   });
+
+  describe('getting display from ComputedState', () => {
+    it('gets expected display', () => {
+      const testState: ErrorState = {
+        kind: 'errorState',
+        error: 'Cannot divide by zero'
+      };
+
+      const result = getDisplayFromState(fakeService)(testState);
+      const expectedResult = 'Cannot divide by zero';
+
+      expect(result).toEqual(expectedResult);
+    });
+  });
 });

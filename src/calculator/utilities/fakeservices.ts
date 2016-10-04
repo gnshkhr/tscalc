@@ -1,3 +1,5 @@
+import { Either } from '../../generic';
+
 const fakeServices = {
   accumulateNonZero:
   (
@@ -20,15 +22,21 @@ const fakeServices = {
     const handleDivide = (x: number, y: number): number => x / y;
 
     switch (op) {
-      case 'add': { return handleAdd(x, y); }
-      case 'subtract': { return handleSubtract(x, y); }
-      case 'multiply': { return handleMultiply(x, y); }
-      case 'divide': { return handleDivide(x, y); }
+      case 'add': { return Either.of(handleAdd(x, y)); }
+      case 'subtract': { return Either.of(handleSubtract(x, y)); }
+      case 'multiply': { return Either.of(handleMultiply(x, y)); }
+      case 'divide': {
+        return y === 0 ?
+          Either.left<DivideByZeroError>('Cannot divide by zero') :
+          Either.of(handleDivide(x, y));
+      }
     }
   },
 
-  getNumberFromAccumulator: () => {
-    return 5;
+  getNumberFromAccumulator: (state) => {
+    return state.digits.length < 1 ?
+      0 :
+      parseFloat(state.digits.slice());
   },
 
   getDisplayFromState: () => {

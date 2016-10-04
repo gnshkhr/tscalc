@@ -43,11 +43,11 @@ type AccumulatorStateKind = "accumulatorState";
 type ComputedStateKind = "computedState";
 type ErrorStateKind = "errorState";
 
-type DivideByZero = "Cannot divide by zero";
+type DivideByZeroError = "Cannot divide by zero";
 
 type DigitAccumulator = string;
 type ComputedDisplay = number;
-type OperationError = DivideByZero;
+type OperationError = DivideByZeroError;
 
 type OperationResult
   = IRight<number>
@@ -78,7 +78,8 @@ interface ErrorState {
 type CalculatorState
   = ZeroState
   | AccumulatorState
-  | ComputedState;
+  | ComputedState
+  | ErrorState;
 
 interface ComputedStateFactory {
   (
@@ -96,6 +97,10 @@ interface AccumulatorStateFactory {
 
 interface ZeroStateFactory {
   (pendingOperation: IMaybe<PendingOperation>): ZeroState
+}
+
+interface ErrorStateFactory {
+  (error: OperationError): ErrorState
 }
 /* Stop Calculator States */
 

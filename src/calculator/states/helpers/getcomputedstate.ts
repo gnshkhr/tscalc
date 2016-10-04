@@ -1,6 +1,7 @@
 import { curry } from 'ramda';
 
 import { Maybe, Either } from '../../../generic';
+import { errorStateFactory } from '../error';
 
 const getComputedStateHelper =
   (
@@ -9,7 +10,7 @@ const getComputedStateHelper =
     services: CalculatorServices,
     state: AccumulatorState,
     nextOperation: Maybe<Operation>
-  ): ComputedState => {
+  ): ComputedState | ErrorState => {
     const getNextState = (dN: number) => {
       return nextOperation.isNothing() ?
         compFactory(Maybe.of(null), dN) :
@@ -25,8 +26,13 @@ const getComputedStateHelper =
     const [op, prevNum] = state.pendingOperation.some();
     const result = services.performOperation(op, prevNum, currentNum);
 
-    // TODO fix when OperationResult properly implemented
-    return getNextState(<number>result);
+    if (Either.isRight(result)) {
+      return getNextState(<number>result.value);
+    }
+
+    if (Either.isLeft(result)) {
+      return errorStateFactory(<OperationError>result.value);
+    }
 };
 
 const helper = curry(getComputedStateHelper);

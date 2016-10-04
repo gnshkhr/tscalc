@@ -42,25 +42,57 @@ describe('ZeroState #handler', () => {
     });
   });
 
-  // TODO
   describe('handling input of Operation', () => {
     it('returns proper ComputedState', () => {
-      pending();
+      const testState = getZeroState(['add', 5]);
+
+      const result = handler(fakeServices, testState, 'multiply');
+      const expectedResult: ComputedState = {
+        kind: 'computedState',
+        pendingOperation: Maybe.of<PendingOperation>(['multiply', 5]),
+        display: 5
+      };
+
+      expect(result).toEqual(expectedResult);
     });
 
     it('returns proper ErrorState', () => {
-      pending();
+      const testState = getZeroState(['divide', 0]);
+
+      const result = handler(fakeServices, testState, 'add');
+      const expectedResult: ErrorState = {
+        kind: 'errorState',
+        error: 'Cannot divide by zero'
+      };
+
+      expect(result).toEqual(expectedResult);
     });
   });
 
-  // TODO
   describe('handling input of Equals', () => {
     it('returns proper ComputedState', () => {
-      pending();
+      const testState = getZeroState(['add', 5]);
+
+      const result = handler(fakeServices, testState, 'equals');
+      const expectedResult: ComputedState = {
+        kind: 'computedState',
+        pendingOperation: Maybe.of(null),
+        display: 5
+      };
+
+      expect(result).toEqual(expectedResult);
     });
 
     it('returns proper ErrorState', () => {
-      pending();
+      const testState = getZeroState(['divide', 0]);
+
+      const result = handler(fakeServices, testState, 'equals');
+      const expectedResult: ErrorState = {
+        kind: 'errorState',
+        error: 'Cannot divide by zero'
+      };
+
+      expect(result).toEqual(expectedResult);
     });
   });
 

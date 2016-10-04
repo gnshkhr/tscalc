@@ -1,3 +1,5 @@
+import { Either } from '../../generic';
+
 import performOperation from './performoperation';
 
 describe('PerformOperation CalculatorService', () => {
@@ -8,7 +10,7 @@ describe('PerformOperation CalculatorService', () => {
       const testY = 5;
 
       const result = performOperation()(testOp, testX, testY);
-      const expectedResult = 15;
+      const expectedResult = Either.of(15);
 
       expect(result).toEqual(expectedResult);
     });
@@ -21,7 +23,7 @@ describe('PerformOperation CalculatorService', () => {
       const testY = 5;
 
       const result = performOperation()(testOp, testX, testY);
-      const expectedResult = 5;
+      const expectedResult = Either.of(5);
 
       expect(result).toEqual(expectedResult);
     });
@@ -34,7 +36,7 @@ describe('PerformOperation CalculatorService', () => {
       const testY = 5;
 
       const result = performOperation()(testOp, testX, testY);
-      const expectedResult = 50;
+      const expectedResult = Either.of(50);
 
       expect(result).toEqual(expectedResult);
     });
@@ -47,7 +49,18 @@ describe('PerformOperation CalculatorService', () => {
       const testY = 5;
 
       const result = performOperation()(testOp, testX, testY);
-      const expectedResult = 2;
+      const expectedResult = Either.of(2);
+
+      expect(result).toEqual(expectedResult);
+    });
+
+    it('returns Left<OperationError>(DivideByZeroError)', () => {
+      const testOp: Operation = 'divide';
+      const testX = 10;
+      const testY = 0;
+
+      const result = performOperation()(testOp, testX, testY);
+      const expectedResult = Either.left('Cannot divide by zero');
 
       expect(result).toEqual(expectedResult);
     });

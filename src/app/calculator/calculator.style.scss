@@ -3,6 +3,7 @@ $primary: #4CB2D4;
 $secondary: #EE4035;
 $tertiary: #F3A530;
 $text-color: #fefefe;
+$text-color-dark: #202020;
 
 :host {
   display: flex;
@@ -94,6 +95,11 @@ $text-color: #fefefe;
   border-radius: 8px;
 
   background-color: $light-background;
+  color: $text-color-dark;
+
+  &.error-state {
+    color: $secondary;
+  }
 }
 
 .button-row {

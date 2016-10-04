@@ -86,6 +86,19 @@ const testInitialState = {
 const testReducer = (state, action) => {
   switch (action.type) {
     case STATE_UPDATE: {
+      if (action.payload.kind === 'errorState') {
+        const nextState = Object.assign({}, state, {
+          calculatorState: {
+            kind: 'errorState',
+            hasPending: false,
+            error: action.payload.error
+          }
+        });
+
+        return nextState;
+      }
+
+
       const nextState = Object.assign({}, state, {
         calculatorState: {
           kind: action.payload.kind,
@@ -129,7 +142,9 @@ const testReducer = (state, action) => {
 };
 
 const getTestString = state => {
-  const { display, pending, calculatorState: { kind, hasPending } } = state;
+  const { display, pending, calculatorState: { kind, hasPending, error } } = state;
+
+  if (kind === 'errorState') return `${error}`;
 
   if (hasPending) return kind === 'computedState' ?
     `${pending}` :
@@ -144,6 +159,7 @@ const _test$ = action$ // more user friendly display for gui
 
 const _operationsDisabled$ = _state$ // if equals was pressed disable +,-,*,/
   .map(state => {
+    if (state.kind === 'errorState') return false;
     if (state.pendingOperation.isNothing()) return state.kind === 'computedState';
     return false;
   });
@@ -152,18 +168,22 @@ const _operationsDisabled$ = _state$ // if equals was pressed disable +,-,*,/
 const _zeroDisabled$ = _state$
   .map(state => {
     // TODO refactor ugly nested conditionals
-    if (!state.pendingOperation.isNothing()) {
-      if (state.pendingOperation.some()[0] === 'divide') {
-        if (state.kind === 'accumulatorState') {
-          if (state.digits.length > 0) {
-            return false;
-          }
-        }
-        return true;
-      }
-    }
+    // if (!state.pendingOperation.isNothing()) {
+      // if (state.pendingOperation.some()[0] === 'divide') {
+        // if (state.kind === 'accumulatorState') {
+          // if (state.digits.length > 0) {
+            // return false;
+          // }
+        // }
+        // return true;
+      // }
+    // }
+    // return false;
     return false;
   });
+
+const _errorDisplay$ = _state$ // toggle css class if currently in ErrorState
+  .map(state => state.kind === 'errorState');
 
 @Injectable()
 class AppState {
@@ -174,6 +194,7 @@ class AppState {
   test$ = _test$;
   operationsDisabled$ = _operationsDisabled$;
   zeroDisabled$ = _zeroDisabled$;
+  errorDisplay$ = _errorDisplay$;
 }
 
 export { AppState };

@@ -10,7 +10,7 @@
     </span>
   </div>
 
-  <div class="display">
+  <div class="display" [class.error-state]="appState.errorDisplay$ | async">
     <label>{{appState.test$ | async}}</label>
   </div>
 

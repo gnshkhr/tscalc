@@ -8,7 +8,16 @@ import { AppState } from '../app.service';
   templateUrl: './calculator.template.html'
 })
 class Calculator {
-  constructor(private appState: AppState) {}
+  private errorStateSubscription;
+  isErrorState: boolean = false;
+
+  constructor(private appState: AppState) {
+    const self = this;
+    this.errorStateSubscription =
+      this.appState.errorDisplay$.subscribe((status) => {
+        this.isErrorState = status;
+      });
+  }
 
   onInput(val) {
     this.appState.input$.next(val);
@@ -16,7 +25,9 @@ class Calculator {
 
   ngOnInit() {}
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.errorStateSubscription.unsubscribe();
+  }
 }
 
 export { Calculator };

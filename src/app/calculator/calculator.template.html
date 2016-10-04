@@ -28,9 +28,32 @@
   </div>
 
   <div class="button-row">
-    <button class="digit" (click)="onInput('7')">7</button>
-    <button class="digit" (click)="onInput('8')">8</button>
-    <button class="digit" (click)="onInput('9')">9</button>
+    <!--7 / seven button-->
+    <button
+      [disabled]="isErrorState"
+      class="digit"
+      (click)="onInput('7')"
+    >
+      7
+    </button>
+
+    <!--8 / eight button-->
+    <button
+      [disabled]="isErrorState"
+      class="digit"
+      (click)="onInput('8')"
+    >
+      8
+    </button>
+
+    <!--9 / nine button-->
+    <button
+      [disabled]="isErrorState"
+      class="digit"
+      (click)="onInput('9')"
+    >
+      9
+    </button>
 
     <!--multiplication button-->
     <button
@@ -42,9 +65,32 @@
   </div>
 
   <div class="button-row">
-    <button class="digit" (click)="onInput('4')">4</button>
-    <button class="digit" (click)="onInput('5')">5</button>
-    <button class="digit" (click)="onInput('6')">6</button>
+    <!--4 / four button-->
+    <button
+      [disabled]="isErrorState"
+      class="digit"
+      (click)="onInput('4')"
+    >
+      4
+    </button>
+
+    <!--5 / five button-->
+    <button
+      [disabled]="isErrorState"
+      class="digit"
+      (click)="onInput('5')"
+    >
+      5
+    </button>
+
+    <!--6 / six button-->
+    <button
+      [disabled]="isErrorState"
+      class="digit"
+      (click)="onInput('6')"
+    >
+      6
+    </button>
 
     <!--subtraction / minus button-->
     <button
@@ -56,9 +102,32 @@
   </div>
 
   <div class="button-row">
-    <button class="digit" (click)="onInput('1')">1</button>
-    <button class="digit" (click)="onInput('2')">2</button>
-    <button class="digit" (click)="onInput('3')">3</button>
+    <!--1 / one button-->
+    <button
+      [disabled]="isErrorState"
+      class="digit"
+      (click)="onInput('1')"
+    >
+      1
+    </button>
+
+    <!--2 / two button-->
+    <button
+      [disabled]="isErrorState"
+      class="digit"
+      (click)="onInput('2')"
+    >
+      2
+    </button>
+
+    <!--3 / three button-->
+    <button
+      [disabled]="isErrorState"
+      class="digit"
+      (click)="onInput('3')"
+    >
+      3
+    </button>
 
     <!--addition / add button-->
     <button
@@ -72,9 +141,10 @@
   <div class="button-row">
     <button class="empty"></button>
 
+    <!--0 / zero button-->
     <button
       class="digit"
-      [disabled]="appState.zeroDisabled$ | async"
+      [disabled]="isErrorState"
       (click)="onInput('0')"
     >
       0
@@ -83,6 +153,6 @@
     <button class="empty"></button>
 
     <!--equals button-->
-    <button (click)="onInput('equals')">&#61;</button>
+    <button [disabled]="isErrorState" (click)="onInput('equals')">&#61;</button>
   </div>
 </div>

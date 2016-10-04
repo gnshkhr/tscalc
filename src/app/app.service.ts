@@ -159,26 +159,8 @@ const _test$ = action$ // more user friendly display for gui
 
 const _operationsDisabled$ = _state$ // if equals was pressed disable +,-,*,/
   .map(state => {
-    if (state.kind === 'errorState') return false;
+    if (state.kind === 'errorState') return true;
     if (state.pendingOperation.isNothing()) return state.kind === 'computedState';
-    return false;
-  });
-
-// if pending op is division with empty accumulator return true
-const _zeroDisabled$ = _state$
-  .map(state => {
-    // TODO refactor ugly nested conditionals
-    // if (!state.pendingOperation.isNothing()) {
-      // if (state.pendingOperation.some()[0] === 'divide') {
-        // if (state.kind === 'accumulatorState') {
-          // if (state.digits.length > 0) {
-            // return false;
-          // }
-        // }
-        // return true;
-      // }
-    // }
-    // return false;
     return false;
   });
 
@@ -193,7 +175,6 @@ class AppState {
   pending$ = _pending$;
   test$ = _test$;
   operationsDisabled$ = _operationsDisabled$;
-  zeroDisabled$ = _zeroDisabled$;
   errorDisplay$ = _errorDisplay$;
 }
 

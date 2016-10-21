@@ -43,6 +43,8 @@
 | Clear | Clear any pending and go to ZeroState. | ZeroState |
 
 ## TODO
+- use abstract classes with static methods?
+- generic tests corrections
 - ng2 tests
 - `Either` tests
 - make tests more descriptive

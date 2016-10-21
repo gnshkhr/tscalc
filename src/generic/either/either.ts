@@ -38,11 +38,8 @@ class Right<R> implements IRight<R> {
   }
 
   ap(liftedF) {
-    return liftedF.map(f => f(this.value));
-  }
-
-  bind(monadicF) {
-    return monadicF(this.value);
+    return this.map(f => f(liftedF.map));
+    // return liftedF.map(f => f(this.value));
   }
 
   toString(): string {
@@ -87,19 +84,19 @@ class Either<L, R> {
 
   static ap(liftedF, result) {
     if (Either.isRight(liftedF) && Either.isRight(result)) {
-      return result.ap(liftedF);
+      return liftedF.ap(result);
     }
 
     if (Either.isLeft(liftedF) && Either.isRight(result)) {
-      return liftedF.ap(liftedF); // return left
+      return liftedF.ap(result); // return left
     }
 
     if (Either.isRight(liftedF) && Either.isLeft(result)) {
-      return result.ap(result); // return left;
+      return result.ap(liftedF); // return left;
     }
 
     if (Either.isLeft(liftedF) && Either.isLeft(result)) {
-      return liftedF.ap(liftedF); // return left
+      return result.ap(result); // return left
     }
   }
 }

@@ -63,20 +63,20 @@ module.exports = function initWebpackTest(options) {
         }
       ],
 
-      postLoaders: [
-        {
-          test: /\.(js|ts)$/,
-          loader: 'istanbul-instrumenter-loader',
-          exclude: [
-            /\.(e2e|spec)\.ts$/,
-            /node_modules/,
-            /\index.ts$/,
-            path.join(helpers.rootDir, 'config', 'spec.bundle.js'),
-            path.join(helpers.sourceDir, 'calculator', 'utilities', 'fakeservices.ts'),
-            path.join(helpers.sourceDir, 'calculator', 'createcalculator.ts')
-          ]
-        }
-      ]
+      // postLoaders: [
+        // {
+          // test: /\.(js|ts)$/,
+          // loader: 'istanbul-instrumenter-loader',
+          // exclude: [
+            // /\.(e2e|spec)\.ts$/,
+            // /node_modules/,
+            // /\index.ts$/,
+            // path.join(helpers.rootDir, 'config', 'spec.bundle.js'),
+            // // path.join(helpers.sourceDir, 'calculator', 'utilities', 'fakeservices.ts'),
+            // path.join(helpers.sourceDir, 'calculator', 'createcalculator.ts')
+          // ]
+        // }
+      // ]
     },
 
     plugins: [
@@ -99,6 +99,23 @@ module.exports = function initWebpackTest(options) {
 
     postcss: () => autoprefixer
   };
+
+  if (process.env.GENERATE_COVERAGE === 'enabled') {
+    config.module.postLoaders = [
+        {
+          test: /\.(js|ts)$/,
+          loader: 'istanbul-instrumenter-loader',
+          exclude: [
+            /\.(e2e|spec)\.ts$/,
+            /node_modules/,
+            /\index.ts$/,
+            path.join(helpers.rootDir, 'config', 'spec.bundle.js'),
+            path.join(helpers.sourceDir, 'calculator', 'utilities', 'fakeservices.ts'),
+            path.join(helpers.sourceDir, 'calculator', 'createcalculator.ts')
+          ]
+        }
+      ];
+  }
 
   return config;
 };
